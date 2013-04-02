@@ -1,0 +1,17 @@
+@CHARSET "ISO-8859-1";
+/* CSS Document for MyOpenJournal */
+/* Last revision: John Larimer 3-20-13 initial development */
+<zk>
+<style>
+#topcontainer {
+	width: 50%;
+	height: auto;
+	position: center;	
+}
+
+#header {
+	font-size: 200px;
+	color: #000000;
+}
+</style>
+</zk>

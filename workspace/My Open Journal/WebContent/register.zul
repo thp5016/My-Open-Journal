@@ -1,0 +1,106 @@
+<zk>
+<include src="navbar.zul"></include>
+<div height="1px"/>
+<window width="722px" apply="Test.Register">
+	<zscript><![CDATA[
+	   boolean hasZkex = true;
+	   try{
+		   Class.forName("org.zkoss.zkex.Version");
+	   }catch(Exception e){
+		   hasZkex = false;			   
+	   }						    
+	]]></zscript>
+	
+	<groupbox mold="3d" closable="false" >
+		<caption label="Register Form"/>
+		<zscript>
+		<![CDATA[//@IMPORT
+		import org.zkoss.lang.Strings;
+		import org.zkoss.lang.Objects;
+		import java.sql.*;
+
+		
+		]]><![CDATA[//@DECLARATION 
+		
+		Constraint pwc = new Constraint() {
+	    	public void validate(Component comp, Object value) throws WrongValueException {
+		       	if (!Objects.equals(pwd.getValue(),value)){
+					throw new WrongValueException(comp, "Password doesn't match");
+		    	}
+	    	}
+	 	};
+	 	
+
+	 	
+	 	// Create Registration form
+		]]></zscript>
+		<div >
+			<grid>
+				<rows>
+					<row>
+						First Name :
+						<textbox id="first" width="200px"
+							constraint="no empty" />
+					</row>
+					<row>
+						Last Name :
+						<textbox id="last" width="200px"
+							constraint="no empty" />
+					</row>
+					<row>
+						Username :
+						<textbox id="username" width="200px"
+							constraint="no empty" />
+					</row>
+					<row>
+						Password :
+						<textbox id="pwd" width="200px" type="password"
+							constraint="no empty" />
+					</row>
+					<row>
+						Re-enter Password :
+						<textbox id="pwd2" width="200px" type="password"
+							constraint="${pwc}" />
+					</row>
+					<row>
+						Email :
+						<textbox id="email" width="200px"
+							constraint="/.+@.+\.[a-z]+/: Please enter an e-mail address" />
+					</row>
+				
+						
+					<row>
+						Credentials:
+					</row>
+					<row>
+						<div></div>
+						<hbox>
+												<checkbox id="professor"></checkbox>
+						Professor
+						</hbox>
+					</row>
+					<row>
+					<div></div>
+					<hbox>
+											<checkbox id="masters"></checkbox>
+						Masters
+						</hbox>
+					</row>
+					<row>
+					<div></div>
+					<hbox>
+											<checkbox id="PhD"></checkbox>
+					
+						PhD 
+						</hbox>
+					</row>
+
+				</rows>
+			</grid>			
+			<hbox pack="center" width="100%">
+				<button id="registerButton" label="Register"/>
+			</hbox>
+		</div>
+	</groupbox>
+</window>
+</zk>

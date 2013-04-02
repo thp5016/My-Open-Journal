@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<language-addon> 
+	<addon-name>addon</addon-name> 
+	<depends>zul,zkex,zkmax</depends> 
+	<language-name>xul/html</language-name> 
+	<stylesheet href="style.css" type="text/css"/> 
+	
+</language-addon> 

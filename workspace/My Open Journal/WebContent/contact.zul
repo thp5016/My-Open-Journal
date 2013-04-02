@@ -1,0 +1,35 @@
+<?page title="home_page" contentType="text/html;charset=UTF-12"?>
+<zk>
+<include src="navbar.zul" />
+		<grid>
+			<rows>
+				<row>
+					<label value="Contact Us"
+						style="font-weight:bold; font-size:20px;">
+					</label>
+				</row>
+				<row>
+					<label
+						value="Please feel free to contact us with any service questions, concerns, or feedback.">
+					</label>
+				</row>
+				<row>
+					<hbox>
+						<label value="Email: "
+							style="font-weight:bold; fontsize:10px;">
+						</label>
+						<label value="admin@myopenjournal.org"></label>
+					</hbox>
+				</row>
+				<row>
+					<hbox>
+						<label value="Telephone: "
+							style="font-weight:bold; fontsize:10px;">
+						</label>
+						<label value="814-867-5309"></label>
+					</hbox>
+
+				</row>
+			</rows>
+		</grid>
+</zk>

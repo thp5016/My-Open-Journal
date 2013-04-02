@@ -1,0 +1,40 @@
+<zk>
+<include src="navbar.zul"></include>
+	<window  apply="Test.Login" >
+		<grid>	    
+		    <rows>
+		        <row>
+					<hbox>
+						<label  value="Username: " style = "font-weight:bold; fontsize:18px" />
+						<textbox id="username" style = "width:110px"/>
+					</hbox>
+		        </row>
+		        <row>
+		       		<hbox>
+		       			<label  value="Password: " style = "font-weight:bold; fontsize:18px" />
+		       			<textbox id="pwd" type="password" style = "width:110px"/>
+		       		</hbox>
+		        </row>
+		        <row>
+		        	<hbox>
+		        		<checkbox />
+		        		<label value="Remember Me?" style = "fontsize:18px"/>
+		        		<button label="Sign In" style = "height:19px" />
+		        	</hbox>
+		        </row>
+		        <row>
+		        	<hbox>
+		        		<label value="Not a member? Sign up here: " style = "fontsize:20px" />
+		       			<button id="register" label="Register" style = "height:19px" >
+		       			        <attribute name="onClick">
+						        <![CDATA[
+						        	Executions.sendRedirect("register.zul");
+						        ]]>
+						        </attribute>
+		       			</button>
+		       		</hbox>
+		        </row>
+		    </rows>
+		</grid>
+	</window>
+</zk>

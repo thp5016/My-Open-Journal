@@ -1,0 +1,72 @@
+<?page title="new page title" contentType="text/html;charset=UTF-8"?>
+<zk>
+<include src="navbar.zul" />
+
+	
+		<grid>
+			<rows>
+				<row>
+					<label value="Title"
+						style="font-weight:bold; font-size:20px">
+					</label>
+				</row>
+				<row>
+					<textbox width="300px" mold="rounded"></textbox>
+					<button id="uploadPaper" upload="true" style="font-weight:bold; font-size:14px" width="160px" label="Upload Paper" mold="trendy" onClick="">
+					
+					</button>
+				</row>
+				<row>
+					<label value="Co-Authors"
+						style="font-weight:bold; font-size:20px">
+					</label>
+					<label value="(accepted file types...)">
+					</label>	
+					<textbox id ="fileName" width="300px" mold="rounded"></textbox>				
+				</row>
+				<row>
+					<textbox width="300px" mold="rounded"></textbox>
+					<button id="uploadAttach" upload="true" style="font-weight:bold; font-size:14px" width="160px" label="Upload Attachments" mold="trendy" onClick=""></button>
+					
+				</row>
+				<row>
+					<label value="References"
+						style="font-weight:bold; font-size:20px">
+					</label>
+					<label value="(accepted file types...)">
+					</label>	
+				</row>
+				<row>
+					<textbox width="300px" mold="rounded"></textbox>
+				</row>
+				<row>
+					<label value="Category"
+						style="font-weight:bold; font-size:20px">
+					</label>
+				</row>
+				<row>
+					<combobox width="300px" mold="rounded">
+						<comboitem label="Science"></comboitem>
+						<comboitem label="Math"></comboitem>
+					</combobox>
+				</row>
+				<row>
+
+					<hbox>
+						<label value="Tags" style="font-weight:bold; font-size:20px">
+						</label>
+						<label value="(Seperated by a comma)"
+							style="font-size:12px">
+						</label>
+					</hbox>
+				</row>
+				<row>
+					<textbox width="300px" mold="rounded"></textbox>
+				</row>
+				<row>
+					<button id="submitPaper" style="font-weight:bold; font-size:20px" width="150px" label="Submit Paper" mold="trendy" onClick=""></button>
+				</row>
+			</rows>
+
+		</grid>
+</zk>
