@@ -19,19 +19,13 @@
 		        	<hbox>
 		        		<checkbox />
 		        		<label value="Remember Me?" style = "fontsize:18px"/>
-		        		<button label="Sign In" style = "height:19px" />
+		        		<button id="login" label="Sign In" style = "height:19px" />
 		        	</hbox>
 		        </row>
 		        <row>
 		        	<hbox>
 		        		<label value="Not a member? Sign up here: " style = "fontsize:20px" />
-		       			<button id="register" label="Register" style = "height:19px" >
-		       			        <attribute name="onClick">
-						        <![CDATA[
-						        	Executions.sendRedirect("register.zul");
-						        ]]>
-						        </attribute>
-		       			</button>
+		       			<button id="register" label="Register" style = "height:19px" />
 		       		</hbox>
 		        </row>
 		    </rows>

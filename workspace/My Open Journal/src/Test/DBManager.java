@@ -19,7 +19,7 @@ public class DBManager {
 		connection = new DBConnection("10.2.65.20", "myopenjournal", "sa", "umaxistheman");
     	query = "INSERT INTO Users (Username, First_Name, Last_Name,  Password) VALUES (?, ?, ?, ?)";
 		try {
-			PreparedStatement stmt = connection.GetConnection().prepareStatement("INSERT INTO Users (Username, First_Name, Last_Name,  Password) VALUES (?, ?, ?, ?)");
+			PreparedStatement stmt = connection.GetConnection().prepareStatement(query);
 			stmt.setString(1, user);
 			stmt.setString(2, firstName);
 			stmt.setString(3, lastName);
@@ -36,25 +36,26 @@ public class DBManager {
 		return true;
 	}
 	
-	public List GetTopPapers()
+	public List<Data> GetTopPapers()
 	{
 		String query;
 		ResultSet rs;
-
 		connection = new DBConnection("10.2.65.20", "myopenjournal", "sa", "umaxistheman");
     	query = "select top 10 * from Papers order by Upvotes desc;";
 		try {
 			PreparedStatement stmt = connection.GetConnection().prepareStatement(query);
 			rs = stmt.executeQuery();
-			stmt.close();
-	    	connection.Disconnect();
-	    	/*List<Data> rowValues = new ArrayList<Data>();
+	    	List<Data> rowValues = new ArrayList<Data>();
+
 	    	while (rs.next()) {
-	    		Data data = new Data(rs.getString(1), rs.getString(2), rs.getString(3));
+	    		Data data = new Data(rs.getString(3), rs.getString(8), rs.getString(9));
 	    	    rowValues.add(data);
 	    	}
+
 	    	rs.close();
-	    	return rowValues;*/
+			stmt.close();
+	    	connection.Disconnect();
+	    	return rowValues;
 		} 
 		catch (SQLException e) {
 			System.out.println("Failure to Get Top Papers: " + e.getMessage());
@@ -68,28 +69,33 @@ public class DBManager {
 		ResultSet rs;
 		
 		connection = new DBConnection("10.2.65.20", "myopenjournal", "sa", "umaxistheman");
-    	query = "select Passoword from Users where Username= ?;";
+    	query = "select Password from Users where Username= ?;";
 		try {
 			PreparedStatement stmt = connection.GetConnection().prepareStatement(query);
 			stmt.setString(1, user);
+
 			rs = stmt.executeQuery();
-			stmt.close();
-	    	connection.Disconnect();
-	    	if(pass.equals(rs))
+			rs.next();
+			if(pass.equals(rs.getString(1)))
 	    	{
-				JOptionPane.showMessageDialog(null, user + " has successfully logged in!!");
+				System.out.println(user + " has successfully logged in!!");
 		    	rs.close();
+				stmt.close();
+		    	connection.Disconnect();
 	    		return true;
 	    	}
 	    	else
 	    	{
-				JOptionPane.showMessageDialog(null, "Invalid password!!");
+				System.out.println("Invalid Password!!");
 		    	rs.close();
+				stmt.close();
+		    	connection.Disconnect();
 	    		return false;
 	    	}
 		} 
 		catch (SQLException e) {
 			JOptionPane.showMessageDialog(null, "Invalid Username!!");
+	    	connection.Disconnect();
 			return false;
 		}
 	}
@@ -98,21 +104,26 @@ public class DBManager {
 	public boolean IsValidUser(String user) {
 		String query;
 		ResultSet rs;
+		boolean isEmpty;
 		
 		connection = new DBConnection("10.2.65.20", "myopenjournal", "sa", "umaxistheman");
-    	query = "select * from Users where Username= ?;";
+    	query = "select Username from Users where Username= ?";
 		try {
 			PreparedStatement stmt = connection.GetConnection().prepareStatement(query);
 			stmt.setString(1, user);
 			rs = stmt.executeQuery();
+			if(!rs.next())
+				isEmpty = false;
+			else
+				isEmpty = true;
+	    	rs.close();
+	    	stmt.close();
 	    	connection.Disconnect();
-	    	System.out.println(rs);
+	    	return isEmpty;
 		} 
 		catch (SQLException e) {
 			System.out.println("Invalid Username!!");
 			return false;
 		}
-
-		return true;
 	}
 }
