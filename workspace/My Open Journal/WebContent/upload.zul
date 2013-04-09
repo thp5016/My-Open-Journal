@@ -1,50 +1,55 @@
-<?page title="new page title" contentType="text/html;charset=UTF-8"?>
+<?page title="Upload a Paper" contentType="text/html;charset=UTF-8"?>
 <zk>
-<window width="722px" apply="Test.Upload">
-
-<include src="navbar.zul" />
-
+<window width="722px">
 	
 		<grid>
 			<rows>
-				<row>
+				<row height = "30px">
 					<label value="Title"
 						style="font-weight:bold; font-size:20px">
 					</label>
 				</row>
-				<row>
-					<textbox width="300px" mold="rounded"></textbox>
-					<button id="uploadPaper" upload="true" style="font-weight:bold; font-size:14px" width="160px" label="Upload Paper" mold="trendy" onClick="">
-					
-					</button>
+				<row height = "30px">
+					<textbox id = "title" width="300px" mold="rounded"></textbox>		 
+					<hbox align="center">
+						<button id="uploadPaper" upload="true" style="font-weight:bold; font-size:14px" width="160px" label="Upload Paper" mold="trendy" onClick="">					
+						</button>
+						<label value="(accepted file types...)">
+					    </label>	
+				 	</hbox>
 				</row>
 				<row>
 					<label value="Co-Authors"
 						style="font-weight:bold; font-size:20px">
 					</label>
-					<label value="(accepted file types...)">
-					</label>	
-					<textbox id ="fileName" width="300px" mold="rounded"></textbox>				
+					<textbox id = "filePath" width = "300px" mold="rounded"></textbox>	
 				</row>
 				<row>
 					<textbox width="300px" mold="rounded"></textbox>
+					<hbox align = "center">
 					<button id="uploadAttach" upload="true" style="font-weight:bold; font-size:14px" width="160px" label="Upload Attachments" mold="trendy" onClick=""></button>
-					
+					<label value="(accepted file types...)">
+					</label>
+					</hbox>
 				</row>
 				<row>
 					<label value="References"
 						style="font-weight:bold; font-size:20px">
 					</label>
-					<label value="(accepted file types...)">
-					</label>	
+					<textbox width = "300px" mold = "rounded"></textbox>
 				</row>
 				<row>
 					<textbox width="300px" mold="rounded"></textbox>
+					<label value = "Description" style = "font-weight:bold; font-size:20px">
+					</label>
 				</row>
-				<row>
-					<label value="Category"
+				<row height = "30px">
+					<label height  value="Category"
 						style="font-weight:bold; font-size:20px">
 					</label>
+					<cell rowspan = "4">
+					<textbox id = "description" width = "300px" mold = "rounded" rows = "9"></textbox>
+					</cell>
 				</row>
 				<row>
 					<combobox width="300px" mold="rounded">
@@ -53,8 +58,7 @@
 					</combobox>
 				</row>
 				<row>
-
-					<hbox>
+					<hbox align = "center" height = "20px">
 						<label value="Tags" style="font-weight:bold; font-size:20px">
 						</label>
 						<label value="(Seperated by a comma)"
@@ -66,7 +70,11 @@
 					<textbox width="300px" mold="rounded"></textbox>
 				</row>
 				<row>
-					<button id="submitPaper" style="font-weight:bold; font-size:20px" width="150px" label="Submit Paper" mold="trendy" onClick=""></button>
+					<cell colspan = "2">
+					<hbox pack = "start" width = "100%">
+						<button id="submitPaper" style="font-weight:bold; font-size:18px" width="150px" label="Submit Paper" mold="trendy" onClick=""></button>
+					</hbox>
+					</cell>
 				</row>
 			</rows>
 
