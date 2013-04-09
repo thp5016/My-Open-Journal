@@ -6,7 +6,7 @@ import org.zkoss.zul.Captcha;
 import org.zkoss.zul.Textbox;
 
 // Registers the user with info specified in registration form and inserts a new
-// entry into the databse
+// entry into the database
 public class Register extends SelectorComposer<Component> {
 	
 	// Textbox components from registration page
