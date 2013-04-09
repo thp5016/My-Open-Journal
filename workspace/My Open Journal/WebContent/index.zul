@@ -1,2 +1,2 @@
-<zk><include src="register.zul"></include>
+<zk><include src="home.zul"></include>
 </zk>

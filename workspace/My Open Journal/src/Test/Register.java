@@ -21,9 +21,6 @@ public class Register extends SelectorComposer<Component> {
 	@Wire
 	Textbox pwd;
 	
-	@Wire
-	Captcha cpa;
-	
 	// Runs when user clicks register button
     @Listen("onClick = #registerButton")
     public void InsertUser() {
