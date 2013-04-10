@@ -8,6 +8,7 @@ public class Home {
 	
 	public static void DisplayResult(Grid myGrid, List<Data> data)
 	{
+		System.out.println("Cookie: " + CookieManager.getCookie());
 	    Rows rows = new Rows();
 	    rows.setParent(myGrid);
 	    for(Data d : data)

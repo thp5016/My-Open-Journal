@@ -4,12 +4,15 @@ import java.sql.Statement;
 
 import org.zkoss.zk.ui.Component;
 import org.zkoss.zk.ui.Executions;
+import org.zkoss.zk.ui.Session;
+import org.zkoss.zk.ui.Sessions;
 import org.zkoss.zk.ui.select.SelectorComposer;
 import org.zkoss.zk.ui.select.annotation.*;
 import org.zkoss.zul.Longbox;
 import org.zkoss.zul.Textbox;
 
 public class Login extends SelectorComposer<Component>{
+	
 	@Wire 
 	Textbox username;
 	
@@ -22,7 +25,10 @@ public class Login extends SelectorComposer<Component>{
     	if(manager.IsValidUser(username.getText()))
     	{
     		if(manager.IsValidPassword(username.getText(), pwd.getText()))
-    			System.out.println("Correct Password!!");
+    		{
+                CookieManager.setCookie(username.getText(), pwd.getText());
+    			Executions.sendRedirect("index.zul");
+    		}
     		else
     			System.out.println("Incorrect Password!!");
     	}
