@@ -14,7 +14,7 @@
 					<hbox align="center">
 						<button id="uploadPaper" upload="true" style="font-weight:bold; font-size:14px" width="160px" label="Upload Paper" mold="trendy" onClick="">					
 						</button>
-						<label value="(accepted file types...)">
+						<label value="(*.pdf only)">
 					    </label>	
 				 	</hbox>
 				</row>
@@ -25,10 +25,12 @@
 					<textbox id = "filePath" width = "300px" mold="rounded"></textbox>	
 				</row>
 				<row>
-					<textbox width="300px" mold="rounded"></textbox>
+					<textbox id = "coauthors" width="300px" mold="rounded"></textbox>
 					<hbox align = "center">
-					<button id="uploadAttach" upload="true" style="font-weight:bold; font-size:14px" width="160px" label="Upload Attachments" mold="trendy" onClick=""></button>
+					<!-- <button id="uploadAttach" upload="true" style="font-weight:bold; font-size:14px" width="160px" label="Upload Attachments" mold="trendy" onClick=""></button>
 					<label value="(accepted file types...)">
+					</label> -->
+					<label value = "Description" style = "font-weight:bold; font-size:20px">
 					</label>
 					</hbox>
 				</row>
@@ -36,23 +38,22 @@
 					<label value="References"
 						style="font-weight:bold; font-size:20px">
 					</label>
-					<textbox width = "300px" mold = "rounded"></textbox>
-				</row>
-				<row>
-					<textbox width="300px" mold="rounded"></textbox>
-					<label value = "Description" style = "font-weight:bold; font-size:20px">
-					</label>
-				</row>
-				<row height = "30px">
-					<label height  value="Category"
-						style="font-weight:bold; font-size:20px">
-					</label>
-					<cell rowspan = "4">
-					<textbox id = "description" width = "300px" mold = "rounded" rows = "9"></textbox>
+					<!-- <textbox id = "attachPath" width = "300px" mold = "rounded"></textbox> -->
+					<cell rowspan = "6">
+					<textbox id = "description" width = "300px" mold = "rounded" rows = "14"></textbox>
 					</cell>
 				</row>
 				<row>
-					<combobox width="300px" mold="rounded">
+					<textbox width="300px" mold="rounded"></textbox>
+
+				</row>
+				<row height = "30px">
+					<label height value="Category"
+						style="font-weight:bold; font-size:20px">
+					</label>
+				</row>
+				<row>
+					<combobox id = "category" width="300px" mold="rounded">
 						<comboitem label="Science"></comboitem>
 						<comboitem label="Math"></comboitem>
 					</combobox>
@@ -67,7 +68,7 @@
 					</hbox>
 				</row>
 				<row>
-					<textbox width="300px" mold="rounded"></textbox>
+					<textbox id = "tags" width="300px" mold="rounded"></textbox>
 				</row>
 				<row>
 					<cell colspan = "2">
