@@ -1,0 +1,22 @@
+<?page title="home_page" contentType="text/html;charset=UTF-12"?>
+<zk>
+
+<include src="navbar.zul" />
+<grid id="myGrid">
+  <columns menupopup="auto">
+    <column label="Title"  />
+    <column label="Upvotes"  />
+    <column label="Downvotes"  />
+  </columns>
+</grid>
+
+<zscript> 
+import Test.DBManager;
+import Test.Home; 
+DBManager manager = new DBManager(); 
+manager.GetTopPapers();
+Home home = new Home();
+home.DisplayResult(myGrid, manager.GetTopPapers());
+</zscript> 
+
+</zk>
