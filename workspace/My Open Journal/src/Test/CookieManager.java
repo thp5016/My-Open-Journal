@@ -22,10 +22,10 @@ public class CookieManager {
         }
 	}
 
-	public static String getCookie() {
+	public static String getCookieName() {
         //get cookie
-        Cookie [] cookies = ((HttpServletRequest)Executions.getCurrent().getNativeRequest()).getCookies();
-		return cookies[0].getValue();
+            Cookie [] cookies = ((HttpServletRequest)Executions.getCurrent().getNativeRequest()).getCookies();
+	    return cookies[0].getName();
 	}
 
 }
