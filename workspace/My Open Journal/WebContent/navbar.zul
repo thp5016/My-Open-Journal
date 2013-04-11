@@ -12,8 +12,6 @@
 <label sclass="navbar" value="|" />
 <a href="upload.zul" sclass="navbar">Submit Paper</a>
 <label sclass="navbar" value="|" />
-<a href="" sclass="navbar">View Paper</a>
-<label sclass="navbar" value="|" />
 <a href="contact.zul" sclass="navbar">Contact</a>
 <label sclass="navbar" value="|" />
 <a href="" sclass="navbar">Search</a>
