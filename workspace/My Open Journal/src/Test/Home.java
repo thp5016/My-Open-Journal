@@ -6,9 +6,9 @@ import org.zkoss.zul.*;
 
 public class Home {
 	
+	// Displays the top 10 papers
 	public static void DisplayResult(Grid myGrid, List<Data> data)
 	{
-	    System.out.println("Cookie: " + CookieManager.getCookieName());
 	    Rows rows = new Rows();
 	    rows.setParent(myGrid);
 	    for(Data d : data)
