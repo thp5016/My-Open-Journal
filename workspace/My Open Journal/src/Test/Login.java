@@ -26,7 +26,7 @@ public class Login extends SelectorComposer<Component>{
     	{
     		if(manager.IsValidPassword(username.getText(), pwd.getText()))
     		{
-                CookieManager.setCookie(username.getText(), pwd.getText());
+    			SessionManager.setSession(username.getText(), pwd.getText());
     			Executions.sendRedirect("index.zul");
     		}
     		else
