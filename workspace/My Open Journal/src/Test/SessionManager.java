@@ -22,7 +22,6 @@ import org.zkoss.zk.ui.select.SelectorComposer;
 import org.zkoss.zk.ui.select.annotation.Wire;
 import org.zkoss.zk.ui.util.Initiator;
 import org.zkoss.zul.Hbox;
-import org.zkoss.zul.Include;
 
 // This class provides Cookie functionality for the website so that users can login
 // and logout, and so that the website can provide user-specific functionality

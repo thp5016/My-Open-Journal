@@ -2,7 +2,6 @@ package Test;
 import org.zkoss.zk.ui.Component;
 import org.zkoss.zk.ui.select.SelectorComposer;
 import org.zkoss.zk.ui.select.annotation.*;
-import org.zkoss.zul.Captcha;
 import org.zkoss.zul.Textbox;
 
 // Registers the user with info specified in registration form and inserts a new
