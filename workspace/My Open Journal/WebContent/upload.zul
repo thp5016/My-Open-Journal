@@ -1,5 +1,6 @@
 <?page title="Upload a Paper" contentType="text/html;charset=UTF-8"?>
 <zk>
+<?init class="Test.SessionManager"?>
 <window width="722px">
 	
 		<grid>
@@ -48,7 +49,7 @@
 
 				</row>
 				<row height = "30px">
-					<label height value="Category"
+					<label value="Category"
 						style="font-weight:bold; font-size:20px">
 					</label>
 				</row>

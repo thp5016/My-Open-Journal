@@ -2,15 +2,11 @@
 <h:image src="logo2.png"/>
 <h:br />
 <hbox sclass="navbar">
-<a href="home.zul" sclass="navbar">Home</a>
+<a href="index.zul" sclass="navbar">Home</a>
 <label sclass="navbar" value="|" />
 <a href="login.zul" sclass="navbar">Login</a>
 <label sclass="navbar" value="|" />
 <a href="register.zul" sclass="navbar">Register</a>
-<label sclass="navbar" value="|" />
-<a href="" sclass="navbar">Profile</a>
-<label sclass="navbar" value="|" />
-<a href="upload.zul" sclass="navbar">Submit Paper</a>
 <label sclass="navbar" value="|" />
 <a href="contact.zul" sclass="navbar">Contact</a>
 <label sclass="navbar" value="|" />

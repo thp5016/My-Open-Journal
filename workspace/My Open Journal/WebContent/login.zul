@@ -1,5 +1,5 @@
 <zk>
-<include src="navbar.zul"></include>
+<?init class="Test.SessionManager"?>
 	<window  apply="Test.Login" >
 		<grid>	    
 		    <rows>

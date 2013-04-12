@@ -1,6 +1,6 @@
 <?page title="home_page" contentType="text/html;charset=UTF-12"?>
 <zk>
-<include src="navbar.zul" />
+<?init class="Test.SessionManager"?>
 		<grid>
 			<rows>
 				<row>

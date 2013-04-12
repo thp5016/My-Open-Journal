@@ -69,7 +69,7 @@ public class SessionManager extends SelectorComposer<Component> implements Initi
 		} 
 		else {
 	        final HashMap<String, Object> map = new HashMap<String, Object>();
-	        Executions.createComponents("navbar2.zul", null, map);
+	        Executions.createComponents("navbarlogin.zul", null, map);
 			return;
 		}
 

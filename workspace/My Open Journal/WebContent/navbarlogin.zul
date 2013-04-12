@@ -2,7 +2,7 @@
 <h:image src="logo2.png"/>
 <h:br />
 <hbox sclass="navbar">
-<a href="home.zul" sclass="navbar">Home</a>
+<a href="index.zul" sclass="navbar">Home</a>
 <label sclass="navbar" value="|" />
 <a href="" sclass="navbar">Profile</a>
 <label sclass="navbar" value="|" />
