@@ -1,0 +1,52 @@
+<?page title="View Paper" contentType="text/html;charset=UTF-8"?>
+<zk>
+	<window width = "722px">
+		<grid oddRowSclass="none">
+			<rows>
+				<row>
+					<cell colspan = "12">
+						<hbox width ="100%" height = "20px">
+							<label id = "paperTitle" value = "Title Goes Here" style="font-weight:bold; font-size:20px"/>
+						</hbox>
+					</cell>
+				</row>
+				<row>
+					<cell colspan = "12">
+						<label id = "byAuthor" value = "by Author Goes Here" style = "font-weight:bold; font-size:14px"/>
+					</cell>
+				</row>
+				<row><label/></row>
+				<row>
+					<cell colspan = "3">
+					<label id = "viewCount" value = "Views: # of Views" style = "font-weight:bold; font-size:14px"/>
+					</cell>
+					<toolbarbutton id ="upVotes" label = "▲ up" style = "color:green; font-weight:bold; font-size:14px" href = "google.com"/>
+					<toolbarbutton id = "dnVotes" label = "▼ dn" style = "color:red; font-weight:bold; font-size:14px" href = "google.com"/>
+					<label/><label/><label/><label/><label/><label/><label/><label/>
+				</row>
+				<row><label/></row>
+				<row>
+					<cell colspan = "12">
+						<label id = "description" value = "Description: Description goes here" style = "font-weight:bold; font-size:14px"/>
+					</cell>
+				</row>
+				<row>
+					<cell colspan = "12">
+						<label id = "refs" value = "References: References go here" style = "font-weight:bold; font-size:14px"/>
+					</cell>
+				</row>
+				<row><label/></row>
+				<row>
+				<cell colspan = "4">
+					<button id = "downloadLink" mold = "trendy" label = "View Paper" style = "font-weight:bold; font-size:14px"/>
+				</cell>
+				</row>
+				<row>
+					<cell colspan = "12">
+						<button id = "reviewLink" mold = "trendy" label = "View Reviews" style = "font-weight:bold; font-size:14px"/>
+					</cell>
+				</row>
+			</rows>
+		</grid>
+	</window>
+</zk>
