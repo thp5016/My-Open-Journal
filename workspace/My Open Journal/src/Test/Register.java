@@ -1,5 +1,6 @@
 package Test;
 import org.zkoss.zk.ui.Component;
+import org.zkoss.zk.ui.Executions;
 import org.zkoss.zk.ui.select.SelectorComposer;
 import org.zkoss.zk.ui.select.annotation.*;
 import org.zkoss.zul.Textbox;
@@ -25,7 +26,8 @@ public class Register extends SelectorComposer<Component> {
     public void InsertUser() {
     	DBManager manager = new DBManager();
     	// Insert User into database
-    	manager.InsertUser(username.getText(), first.getText(), last.getText(), pwd.getText(), "0"); 	
+    	manager.InsertUser(username.getText(), first.getText(), last.getText(), pwd.getText(), "0"); 
+		Executions.sendRedirect("index.zul");
     }
 	
 }

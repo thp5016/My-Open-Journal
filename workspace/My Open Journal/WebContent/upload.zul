@@ -1,8 +1,7 @@
 <?page title="Upload a Paper" contentType="text/html;charset=UTF-8"?>
 <zk>
 <?init class="Test.SessionManager"?>
-<window width="722px">
-	
+<window width="722px" apply="Test.Upload">	
 		<grid>
 			<rows>
 				<row height = "30px">
@@ -13,8 +12,8 @@
 				<row height = "30px">
 					<textbox id = "title" width="300px" mold="rounded"></textbox>		 
 					<hbox align="center">
-						<button id="uploadPaper" upload="true" style="font-weight:bold; font-size:14px" width="160px" label="Upload Paper" mold="trendy" onClick="">					
-						</button>
+						<button id="uploadPaper" upload="true" style="font-weight:bold; font-size:14px" width="160px" label="Upload Paper" mold="trendy">					
+						  </button>
 						<label value="(*.pdf only)">
 					    </label>	
 				 	</hbox>
@@ -23,7 +22,7 @@
 					<label value="Co-Authors"
 						style="font-weight:bold; font-size:20px">
 					</label>
-					<textbox id = "filePath" width = "300px" mold="rounded"></textbox>	
+					<textbox id = "filePath" width = "300px" readonly="true" mold="rounded"></textbox>	
 				</row>
 				<row>
 					<textbox id = "coauthors" width="300px" mold="rounded"></textbox>
@@ -74,7 +73,7 @@
 				<row>
 					<cell colspan = "2">
 					<hbox pack = "start" width = "100%">
-						<button id="submitPaper" style="font-weight:bold; font-size:18px" width="150px" label="Submit Paper" mold="trendy" onClick=""></button>
+						<button id="submitPaper" style="font-weight:bold; font-size:18px" width="150px" label="Submit Paper" mold="trendy"></button>
 					</hbox>
 					</cell>
 				</row>

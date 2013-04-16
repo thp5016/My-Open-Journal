@@ -32,8 +32,56 @@ public class DBManager {
 			System.out.println("Failure to insert user: " + e.getMessage());
 			return false;
 		}
-		JOptionPane.showMessageDialog(null, user +  "has been successfully registered!!");
 		return true;
+	}
+	
+	public int GetID(String user)
+	{
+		int id;
+		String query;
+		ResultSet rs;
+		
+		connection = new DBConnection("10.2.65.20", "myopenjournal", "sa", "umaxistheman");
+    	query = "select User_ID from Users where Username= ?;";
+		try {
+			PreparedStatement stmt = connection.GetConnection().prepareStatement(query);
+			stmt.setString(1, user);
+			rs = stmt.executeQuery();
+			rs.next();
+			id = rs.getInt(1);
+	    	rs.close();
+			stmt.close();
+	    	connection.Disconnect();
+    		return id;
+		} 
+		catch (SQLException e) {
+	    	connection.Disconnect();
+			return -1;
+		}
+	}
+	
+	public boolean InsertPaper(int authorID, String title, String path, String description, String date)
+	{
+		String query;
+		
+		connection = new DBConnection("10.2.65.20", "myopenjournal", "sa", "umaxistheman");
+    	query = "INSERT INTO Papers (Author_ID, Title, File_Path, Description, Upload_Date, Weight, Upvotes, Downvotes, Reports) VALUES (?, ?, ?, ?, ?, 0, 0, 0, 0)";
+		try {
+			PreparedStatement stmt = connection.GetConnection().prepareStatement(query);
+			stmt.setInt(1, authorID);
+			stmt.setString(2, title);
+			stmt.setString(3, path);
+			stmt.setString(4, description);
+			stmt.setString(5, date);
+			stmt.executeUpdate();
+			stmt.close();
+	    	connection.Disconnect();
+	    	return true;
+		} 
+		catch (SQLException e) {
+			System.out.println("Failure to insert user: " + e.getMessage());
+			return false;
+		}
 	}
 	
 	public List<Data> GetTopPapers()
@@ -94,7 +142,6 @@ public class DBManager {
 	    	}
 		} 
 		catch (SQLException e) {
-			JOptionPane.showMessageDialog(null, "Invalid Username!!");
 	    	connection.Disconnect();
 			return false;
 		}
