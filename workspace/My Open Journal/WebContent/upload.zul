@@ -2,7 +2,7 @@
 <zk>
 	<?init class="Test.SessionManager"?>
 
-	<window width="722px">	
+	<window width="722px" apply="Test.Upload">	
 		<grid oddRowSclass="none">
 			<rows>
 				<row>
