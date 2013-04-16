@@ -3,12 +3,39 @@
 <zk>
 <?init class="Test.SessionManager"?>
 
-<grid id="myGrid">
-  <columns menupopup="auto">
-    <column label="Title"  />
-    <column label="Upvotes"  />
-    <column label="Downvotes"  />
-  </columns>
+<grid id = allHomeCols>
+	<columns>
+		<column>
+			<label value = "MOST POPULAR" style = "font-weight:bold; font-size:14px"/>
+			<grid id="popCol">
+  				<columns menupopup="auto">
+    				<column width = "70%" label="Title"  />
+    				<column label="▲Up" align = "center"/>
+    				<column label="▼Down"/>
+  				</columns>
+			</grid>
+		</column>
+		<column>
+		<label value = "NEWEST" style = "font-weight:bold; font-size:14px"/>
+			<grid id="newCol">
+  				<columns menupopup="auto">
+    				<column width = "70%" label="Title"  />
+    				<column label="▲Up" align = "center"/>
+    				<column label="▼Down"/>
+  				</columns>
+			</grid>
+		</column>
+		<column>
+			<label value = "HIGHEST RATED" style = "font-weight:bold; font-size:14px"/>
+			<grid id="highCol">
+  				<columns menupopup="auto">
+    				<column width = "70%" label="Title"  />
+    				<column label="▲Up" align = "center"/>
+    				<column label="▼Down"/>
+  				</columns>
+			</grid>
+		</column>
+	</columns>
 </grid>
 
 <zscript> 
@@ -17,7 +44,9 @@ import Test.Home;
 DBManager manager = new DBManager(); 
 manager.GetTopPapers();
 Home home = new Home();
-home.DisplayResult(myGrid, manager.GetTopPapers());
+home.DisplayResult(popCol, manager.GetTopPapers());
+home.DisplayResult(newCol, manager.GetTopPapers());
+home.DisplayResult(highCol, manager.GetTopPapers());
 </zscript> 
 
 </zk>
