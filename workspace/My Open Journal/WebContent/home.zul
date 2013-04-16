@@ -45,7 +45,7 @@ DBManager manager = new DBManager();
 manager.GetTopPapers();
 Home home = new Home();
 home.DisplayResult(popCol, manager.GetTopPapers());
-home.DisplayResult(newCol, manager.GetTopPapers());
+home.DisplayResult(newCol, manager.GetNewPapers());
 home.DisplayResult(highCol, manager.GetTopPapers());
 </zscript> 
 
