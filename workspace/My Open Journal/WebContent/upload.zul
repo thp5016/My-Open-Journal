@@ -38,7 +38,7 @@
 
 				</row>
 				<row height = "30px">
-					<label height value="Category" style="color:black; font-weight:bold; font-size:16px"/>
+					<label value="Category" style="color:black; font-weight:bold; font-size:16px"/>
 				</row>
 				<row>
 					<combobox id = "category" width="300px" mold="rounded">
