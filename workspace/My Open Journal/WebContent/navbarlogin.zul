@@ -4,7 +4,7 @@
 <hbox sclass="navbar">
 <a href="index.zul" sclass="navbar">Home</a>
 <label sclass="navbar" value="|" />
-<a href="" sclass="navbar">Profile</a>
+<a href="editprofile.zul" sclass="navbar">Profile</a>
 <label sclass="navbar" value="|" />
 <a href="upload.zul" sclass="navbar">Submit Paper</a>
 <label sclass="navbar" value="|" />
