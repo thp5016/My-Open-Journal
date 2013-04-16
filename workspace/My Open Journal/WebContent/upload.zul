@@ -1,0 +1,68 @@
+<?page title="Upload a Paper" contentType="text/html;charset=UTF-8"?>
+<zk>
+	<window width="722px">	
+		<grid oddRowSclass="none">
+			<rows>
+				<row>
+					<label value = "Submit a Paper" style="color:black; font-weight:bold; font-size:20px"/>
+				</row>
+				<row>
+					<label value="Title" style="color:black; font-weight:bold; font-size:16px"/>
+				</row>
+				<row height = "30px">
+					<textbox id = "title" width="300px" mold="rounded"/>		 
+					<hbox align="center">
+						<button id="uploadPaper" upload="true" style="font-weight:bold; font-size:14px" width="160px" label="Upload File" mold="trendy" onClick=""/>					
+						<label value="(*.pdf only)"/>
+				 	</hbox>
+				</row>
+				<row>
+					<label value="Co-Authors" style="color:black; font-weight:bold; font-size:16px"/>
+					<textbox id = "filePath" width = "300px" mold="rounded" readonly="true"/>	
+				</row>
+				<row>
+					<textbox id = "coauthors" width="300px" mold="rounded"/>
+					<hbox align = "center">
+						<label value = "Description" style = "color:black; font-weight:bold; font-size:16px"/>
+					</hbox>
+				</row>
+				<row>
+					<label value="References"
+						style="color:black; font-weight:bold; font-size:16px"/>
+					<cell rowspan = "6">
+					<textbox id = "description" width = "300px" mold = "rounded" rows = "13"/>
+					</cell>
+				</row>
+				<row>
+					<textbox width="300px" mold="rounded"/>
+
+				</row>
+				<row height = "30px">
+					<label height value="Category" style="color:black; font-weight:bold; font-size:16px"/>
+				</row>
+				<row>
+					<combobox id = "category" width="300px" mold="rounded">
+						<comboitem label="Science"/>
+						<comboitem label="Math"/>
+					</combobox>
+				</row>
+				<row>
+					<hbox align = "center" height = "20px">
+						<label value="Tags" style="color:black; font-weight:bold; font-size:16px"/>
+						<label value="(Seperated by a comma)" style="font-size:12px"/>
+					</hbox>
+				</row>
+				<row>
+					<textbox id = "tags" width="300px" mold="rounded"/>
+				</row>
+				<row>
+					<cell colspan = "2">
+					<hbox pack = "start" width = "100%">
+						<button id="submitPaper"  style="color:black; font-weight:bold; font-size:14px" width="150px" label="Submit Paper" mold="trendy" onClick=""/>
+					</hbox>
+					</cell>
+				</row>
+			</rows>
+		</grid>
+	</window>
+</zk>
