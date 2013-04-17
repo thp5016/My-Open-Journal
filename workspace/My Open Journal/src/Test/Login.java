@@ -1,10 +1,10 @@
 package Test;
 
-
 import org.zkoss.zk.ui.Component;
 import org.zkoss.zk.ui.Executions;
 import org.zkoss.zk.ui.select.SelectorComposer;
 import org.zkoss.zk.ui.select.annotation.*;
+import org.zkoss.zul.Popup;
 import org.zkoss.zul.Textbox;
 
 public class Login extends SelectorComposer<Component>{
@@ -22,7 +22,6 @@ public class Login extends SelectorComposer<Component>{
     @Listen("onClick = #login")
     public void LoginUser(){
     	DBManager manager = new DBManager();
-    	
     	// Check to see if username is already registered
     	if(manager.IsValidUser(username.getText())) {
     		

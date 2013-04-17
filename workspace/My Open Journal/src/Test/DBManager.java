@@ -14,7 +14,7 @@ public class DBManager {
 		String query;
 		
 		connection = new DBConnection("10.2.65.20", "myopenjournal", "sa", "umaxistheman");
-    	query = "INSERT INTO Users (Username, First_Name, Last_Name,  Password) VALUES (?, ?, ?, ?)";
+    	query = "INSERT INTO Users (Username, First_Name, Last_Name,  Password) VALUES (?, ?, ?, ?);";
 		try {
 			PreparedStatement stmt = connection.GetConnection().prepareStatement(query);
 			stmt.setString(1, user);

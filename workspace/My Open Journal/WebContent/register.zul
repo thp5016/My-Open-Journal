@@ -42,22 +42,22 @@
 					<row>
 						First Name :
 						<textbox id="first" width="200px"
-							constraint="no empty" />
+							constraint="/[0-9a-zA-Z]+/" />
 					</row>
 					<row>
 						Last Name :
 						<textbox id="last" width="200px"
-							constraint="no empty" />
+							constraint="/[0-9a-zA-Z]+/" />
 					</row>
 					<row>
 						Username :
 						<textbox id="username" width="200px"
-							constraint="no empty" />
+							constraint="/[0-9a-zA-Z]+/" />
 					</row>
 					<row>
 						Password :
 						<textbox id="pwd" width="200px" type="password"
-							constraint="no empty" />
+							constraint="/[0-9a-zA-Z]+/" />
 					</row>
 					<row>
 						Re-enter Password :
