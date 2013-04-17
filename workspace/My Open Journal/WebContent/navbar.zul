@@ -1,5 +1,5 @@
 <zk xmlns:h="http://www.w3.org/1999/xhtml">
-<h:image src="logo2.png"/>
+<h:image sclass="navbar" src="logo2.png"/>
 <h:br />
 <hbox sclass="navbar">
 <a href="index.zul" sclass="navbar">Home</a>

@@ -10,17 +10,18 @@ public class DBManager {
 	private DBConnection connection;
 	
 	// Creates a new entry in the User database with the specified values
-	public boolean InsertUser(String user, String firstName, String lastName, String pass, String admin) {
+	public boolean InsertUser(String user, String firstName, String lastName, String pass, String admin, String date) {
 		String query;
 		
 		connection = new DBConnection("10.2.65.20", "myopenjournal", "sa", "umaxistheman");
-    	query = "INSERT INTO Users (Username, First_Name, Last_Name,  Password) VALUES (?, ?, ?, ?);";
+    	query = "INSERT INTO Users (Username, First_Name, Last_Name,  Password, Register_Date) VALUES (?, ?, ?, ?, ?);";
 		try {
 			PreparedStatement stmt = connection.GetConnection().prepareStatement(query);
 			stmt.setString(1, user);
 			stmt.setString(2, firstName);
 			stmt.setString(3, lastName);
 			stmt.setString(4, pass);
+			stmt.setString(5, date);
 			stmt.executeUpdate();
 			stmt.close();
 	    	connection.Disconnect();

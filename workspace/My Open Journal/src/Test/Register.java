@@ -1,4 +1,8 @@
 package Test;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import org.zkoss.zk.ui.Component;
 import org.zkoss.zk.ui.Executions;
 import org.zkoss.zk.ui.select.SelectorComposer;
@@ -24,9 +28,11 @@ public class Register extends SelectorComposer<Component> {
 	// Runs when user clicks register button
     @Listen("onClick = #registerButton")
     public void InsertUser() {
+		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		Date date = new Date();
     	DBManager manager = new DBManager();
     	// Insert User into database
-    	manager.InsertUser(username.getText(), first.getText(), last.getText(), pwd.getText(), "0"); 
+    	manager.InsertUser(username.getText(), first.getText(), last.getText(), pwd.getText(), "0", dateFormat.format(date)); 
 		Executions.sendRedirect("index.zul");
     }
 	

@@ -35,7 +35,7 @@ public class Upload extends SelectorComposer<Component> {
 		int id;
 		String path;
 		String user;
-		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		Date date = new Date();
     	DBManager manager = new DBManager();
     	user = SessionManager.GetUser();
