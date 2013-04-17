@@ -10,7 +10,7 @@
 					<label value="Title" style="color:black; font-weight:bold; font-size:16px"/>
 				</row>
 				<row height = "30px">
-					<textbox id = "title" width="300px" mold="rounded"/>		 
+					<textbox id = "title" width="300px" constraint="no empty" mold="rounded"/>		 
 					<hbox align="center">
 						<button id="uploadPaper" upload="true" style="font-weight:bold; font-size:14px" width="160px" label="Upload File" mold="trendy" onClick=""/>					
 						<label value="(*.pdf only)"/>
@@ -30,7 +30,7 @@
 					<label value="References"
 						style="color:black; font-weight:bold; font-size:16px"/>
 					<cell rowspan = "6">
-					<textbox id = "description" width = "300px" mold = "rounded" rows = "13"/>
+					<textbox id = "description" width = "300px" mold = "rounded" constraint="no empty" rows = "13"/>
 					</cell>
 				</row>
 				<row>
