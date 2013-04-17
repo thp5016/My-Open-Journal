@@ -1,3 +1,5 @@
+<?page title="My Open Journal - Register" contentType="text/html;charset=UTF-12"?>
+
 <zk>
 <?init class="Test.SessionManager"?>
 <div height="1px"/>

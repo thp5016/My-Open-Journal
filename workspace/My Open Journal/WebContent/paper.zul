@@ -1,4 +1,4 @@
-<?page title="View Paper" contentType="text/html;charset=UTF-8"?>
+<?page title="My Open Journal - View Paper" contentType="text/html;charset=UTF-8"?>
 <zk>
 	<window width = "722px">
 		<grid oddRowSclass="none">
