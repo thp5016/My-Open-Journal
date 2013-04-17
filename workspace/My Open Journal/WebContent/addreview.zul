@@ -1,0 +1,31 @@
+<?page title="MyOpenJournal - Submit Review" contentType="text/html;charset=UTF-8"?>
+<zk>
+	<window width="722px">	
+		<grid oddRowSclass="none">
+			<rows>
+				<row>
+					<label value = "Submit Review" style="color:black; font-weight:bold; font-size:20px"/>
+				</row>
+				<row>
+					<label id ="responsePaper" value="In Response To: Paper Title Here" style="color:black; font-weight:bold; font-size:16px"/>
+				</row>
+				<row>
+					<hbox>
+						<label value="Type your review here:" style="color:black; font-weight:bold; font-size:16px"/>
+						<label/>
+						<label value="(minimum 500 words)"/>
+					</hbox>
+				</row>
+				<row>
+					<textbox id = "typedReview" width = "600px" mold = "rounded" rows = "13"/>
+				</row>
+				<row>
+					<button id="submitReview"  style="color:black; font-weight:bold; font-size:14px" width="150px" label="Submit Review" mold="trendy" onClick=""/>
+				</row>
+				<row>
+					<button id="backToPaper"  style="color:black; font-weight:bold; font-size:14px" width="150px" label="Back to Paper" mold="trendy" onClick=""/>
+				</row>
+			</rows>
+		</grid>
+	</window>
+</zk>

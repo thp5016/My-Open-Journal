@@ -1,0 +1,38 @@
+<?page title="MyOpenJournal - Comments" contentType="text/html;charset=UTF-8"?>
+<zk>
+	<window width = "722px">
+		<grid oddRowSclass="none">
+			<rows>
+				<row>
+					<label id = "commentHeading" value = "Comments" style="color:black; font-weight:bold; font-size:20px"/>
+				</row>
+				<row>
+					<label value = "in response to Author's review of Paper" style = "color:black;font-weight:bold;font-size:14px"/>
+				</row>
+				<row>
+					<grid id="reviewTable">
+  						<columns menupopup="auto">
+    						<column width = "60%" label="Comment" style = "color:black"/>
+    						<column width = "20%" label="Author" style = "color:black"/>
+    						<column label="▲Up" align = "center" style = "color:green"/>
+    						<column label="▼Down" align ="center" style = "color:red"/>
+  						</columns>
+					</grid>
+				</row>
+				<row><label/></row>
+				<row>
+					<button id = "addComment" mold = "trendy" label = "Add Your Own Comment" style = "font-weight:bold; font-size:14px"/>
+				</row>
+				<row>
+					<button id = "backToReview" mold = "trendy" label = "Back to Review" style = "font-weight:bold; font-size:14px"/>
+				</row>
+				<row>
+					<button id = "backToAllRevs" mold = "trendy" label = "Back to All Reviews" style = "font-weight:bold; font-size:14px"/>
+				</row>
+				<row>
+					<button id = "backToPaper" mold = "trendy" label = "Back to Paper" style = "font-weight:bold; font-size:14px"/>
+				</row>
+			</rows>
+		</grid>
+	</window>
+</zk>

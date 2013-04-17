@@ -1,37 +1,37 @@
-<?page title="My Open Journal" contentType="text/html;charset=UTF-12"?>
+<?page title="MyOpenJournal - Home" contentType="text/html;charset=UTF-12"?>
 
 <zk>
 <?init class="Test.SessionManager"?>
 
-<grid id = "allHomeCols">
+<grid id = allHomeCols>
 	<columns>
 		<column>
-			<label value = "MOST POPULAR" style = "font-weight:bold; font-size:14px"/>
+			<label value = "MOST POPULAR" style = "color: black; font-weight:bold; font-size:14px"/>
 			<grid id="popCol">
   				<columns menupopup="auto">
-    				<column width = "70%" label="Title"  />
-    				<column label="▲Up" align = "center"/>
-    				<column label="▼Down"/>
+    				<column width = "70%" label="Title" style = "color:black"/>
+    				<column label="▲Up" align = "center" style = "color:green"/>
+    				<column label="▼Down" align ="center" style = "color:red"/>
   				</columns>
 			</grid>
 		</column>
 		<column>
-		<label value = "NEWEST" style = "font-weight:bold; font-size:14px"/>
+		<label value = "NEWEST" style = "color: black; font-weight:bold; font-size:14px"/>
 			<grid id="newCol">
   				<columns menupopup="auto">
-    				<column width = "70%" label="Title"  />
-    				<column label="▲Up" align = "center"/>
-    				<column label="▼Down"/>
+    				<column width = "70%" label="Title" style = "color:black"/>
+    				<column label="▲Up" align = "center" style = "color:green"/>
+    				<column label="▼Down" align ="center" style = "color:red"/>
   				</columns>
 			</grid>
 		</column>
 		<column>
-			<label value = "HIGHEST RATED" style = "font-weight:bold; font-size:14px"/>
+			<label value = "HIGHEST RATED" style = "color:black; font-weight:bold; font-size:14px"/>
 			<grid id="highCol">
   				<columns menupopup="auto">
-    				<column width = "70%" label="Title"  />
-    				<column label="▲Up" align = "center"/>
-    				<column label="▼Down"/>
+    				<column width = "70%" label="Title" style = "color:black"/>
+    				<column label="▲Up" align = "center" style = "color:green"/>
+    				<column label="▼Down" align ="center" style = "color:red"/>
   				</columns>
 			</grid>
 		</column>
@@ -45,7 +45,7 @@ DBManager manager = new DBManager();
 manager.GetTopPapers();
 Home home = new Home();
 home.DisplayResult(popCol, manager.GetTopPapers());
-home.DisplayResult(newCol, manager.GetNewPapers());
+home.DisplayResult(newCol, manager.GetTopPapers());
 home.DisplayResult(highCol, manager.GetTopPapers());
 </zscript> 
 

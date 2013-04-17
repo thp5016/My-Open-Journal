@@ -1,12 +1,10 @@
-<?page title="My Open Journal - Upload a Paper" contentType="text/html;charset=UTF-8"?>
+<?page title="MyOpenJournal - Submit Paper" contentType="text/html;charset=UTF-8"?>
 <zk>
-	<?init class="Test.SessionManager"?>
-
-	<window width="722px" apply="Test.Upload">	
+	<window width="722px">	
 		<grid oddRowSclass="none">
 			<rows>
 				<row>
-					<label value = "Submit a Paper" style="color:black; font-weight:bold; font-size:20px"/>
+					<label value = "Submit Paper" style="color:black; font-weight:bold; font-size:20px"/>
 				</row>
 				<row>
 					<label value="Title" style="color:black; font-weight:bold; font-size:16px"/>
@@ -20,7 +18,7 @@
 				</row>
 				<row>
 					<label value="Co-Authors" style="color:black; font-weight:bold; font-size:16px"/>
-					<textbox id = "filePath" width = "300px" mold="rounded" readonly="true"/>	
+					<textbox id = "filePath" width = "300px" mold="rounded"/>	
 				</row>
 				<row>
 					<textbox id = "coauthors" width="300px" mold="rounded"/>
@@ -40,7 +38,7 @@
 
 				</row>
 				<row height = "30px">
-					<label value="Category" style="color:black; font-weight:bold; font-size:16px"/>
+					<label height value="Category" style="color:black; font-weight:bold; font-size:16px"/>
 				</row>
 				<row>
 					<combobox id = "category" width="300px" mold="rounded">
