@@ -297,4 +297,50 @@ public class DBManager {
 			return false;
 		}
 	}
+	
+	// This function inserts a new comment into the database given a review_ID the comment is
+	// posted on, user_ID that is submitting the comment, and a String comment
+	public boolean InsertComment(int reviewID, int userID, String comment) {
+		String query;
+		
+		connection = new DBConnection("10.2.65.20", "myopenjournal", "sa", "umaxistheman");
+    	query = "INSERT INTO Comments (Review_ID, Commenter_ID, Text) VALUES (?, ?, ?)";
+		try {
+			PreparedStatement stmt = connection.GetConnection().prepareStatement(query);
+			stmt.setInt(1, reviewID);
+			stmt.setInt(2, userID);
+			stmt.setString(3, comment);
+			stmt.executeUpdate();
+			stmt.close();
+	    	connection.Disconnect();
+	    	return true;
+		} 
+		catch (SQLException e) {
+			System.out.println("Failure to insert user: " + e.getMessage());
+			return false;
+		}
+	}
+	
+	// This function inserts a new review into the database given a paper_ID the review is
+	// posted on, user_ID that is submitting the comment, and a String review
+	public boolean InsertReview(int paperID, int userID, String review) {
+		String query;
+		
+		connection = new DBConnection("10.2.65.20", "myopenjournal", "sa", "umaxistheman");
+    	query = "INSERT INTO Comments (Paper_ID, Commenter_ID, Text) VALUES (?, ?, ?)";
+		try {
+			PreparedStatement stmt = connection.GetConnection().prepareStatement(query);
+			stmt.setInt(1, paperID);
+			stmt.setInt(2, userID);
+			stmt.setString(3, review);
+			stmt.executeUpdate();
+			stmt.close();
+	    	connection.Disconnect();
+	    	return true;
+		} 
+		catch (SQLException e) {
+			System.out.println("Failure to insert user: " + e.getMessage());
+			return false;
+		}
+	}
 }
