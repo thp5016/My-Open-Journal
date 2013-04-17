@@ -2,6 +2,9 @@ package Test;
 
 import java.util.List;
 
+import org.zkoss.zk.ui.Executions;
+import org.zkoss.zk.ui.event.Event;
+import org.zkoss.zk.ui.event.EventListener;
 import org.zkoss.zul.*;
 
 public class Home {
@@ -13,7 +16,18 @@ public class Home {
 	    rows.setParent(myGrid);
 	    for(Data d : data)
 	    {
+	    	final int id = d.GetID();
 	        Label title= new Label(d.GetTitle());
+	        title.addEventListener("onClick", new EventListener()
+	        {
+				@Override
+				public void onEvent(Event event) throws Exception {
+					DBManager manager = new DBManager();
+					System.out.println("path: " + manager.GetPaperPath(id));
+					Executions.sendRedirect(manager.GetPaperPath(id));
+				}
+	        }
+	        );
 	        Label upvotes = new Label(d.GetUpvotes());
 	        Label downvotes = new Label(d.GetDownvotes());
 

@@ -32,6 +32,29 @@ public class DBManager {
 		return true;
 	}
 	
+	public boolean ChangeProfile(String user, String password, String firstName, String lastName)
+	{
+		String query;
+		connection = new DBConnection("10.2.65.20", "myopenjournal", "sa", "umaxistheman");
+    	query = "update Users set Password = ?, First_Name = ?, Last_Name = ? where Username = ?;";
+    	try {
+			PreparedStatement stmt = connection.GetConnection().prepareStatement(query);
+			stmt.setString(1, password);
+			stmt.setString(2, firstName);
+			stmt.setString(3, lastName);
+			stmt.setString(4, user);
+			stmt.executeUpdate();
+			stmt.close();
+	    	connection.Disconnect();
+	    	return true;
+		} 
+		catch (SQLException e) {
+			System.out.println("Failure to update profile: " + e.getMessage());
+			return false;
+		}
+
+	}
+	
 	public int GetID(String user)
 	{
 		int id;
@@ -81,6 +104,33 @@ public class DBManager {
 		}
 	}
 	
+	public String GetPaperPath(int id)
+	{
+		String path;
+		String query;
+		ResultSet rs;
+		
+		connection = new DBConnection("10.2.65.20", "myopenjournal", "sa", "umaxistheman");
+    	query = "select File_Path from Papers where Paper_ID = ?;";
+    	try {
+			PreparedStatement stmt = connection.GetConnection().prepareStatement(query);
+			stmt.setInt(1, id);
+			rs = stmt.executeQuery();
+			rs.next();
+			path = rs.getString(1);
+			rs.close();
+			stmt.close();
+	    	connection.Disconnect();
+	    	return path;
+		} 
+		catch (SQLException e) {
+			System.out.println("Failure to Get Top Papers: " + e.getMessage());
+			return null;
+		}
+
+		
+	}
+	
 	public List<Data> GetTopPapers()
 	{
 		String query;
@@ -93,7 +143,7 @@ public class DBManager {
 	    	List<Data> rowValues = new ArrayList<Data>();
 
 	    	while (rs.next()) {
-	    		Data data = new Data(rs.getString(3), rs.getString(8), rs.getString(9));
+	    		Data data = new Data(rs.getString(3), rs.getString(8), rs.getString(9), rs.getInt(1));
 	    	    rowValues.add(data);
 	    	}
 
@@ -107,7 +157,57 @@ public class DBManager {
 		}
 		return null;
 	}
+	
+	public String GetFirstName(String user)
+	{
+		String name;
+		String query;
+		ResultSet rs;
 		
+		connection = new DBConnection("10.2.65.20", "myopenjournal", "sa", "umaxistheman");
+    	query = "select First_Name from Users where Username= ?;";
+		try {
+			PreparedStatement stmt = connection.GetConnection().prepareStatement(query);
+			stmt.setString(1, user);
+			rs = stmt.executeQuery();
+			rs.next();
+			name = rs.getString(1);
+	    	rs.close();
+			stmt.close();
+	    	connection.Disconnect();
+    		return name;
+		} 
+		catch (SQLException e) {
+	    	connection.Disconnect();
+			return null;
+		}
+	}
+		
+	public String GetLastName(String user)
+	{
+		String name;
+		String query;
+		ResultSet rs;
+		
+		connection = new DBConnection("10.2.65.20", "myopenjournal", "sa", "umaxistheman");
+    	query = "select Last_Name from Users where Username= ?;";
+		try {
+			PreparedStatement stmt = connection.GetConnection().prepareStatement(query);
+			stmt.setString(1, user);
+			rs = stmt.executeQuery();
+			rs.next();
+			name = rs.getString(1);
+	    	rs.close();
+			stmt.close();
+	    	connection.Disconnect();
+    		return name;
+		} 
+		catch (SQLException e) {
+	    	connection.Disconnect();
+			return null;
+		}
+	}
+	
 	public List<Data> GetNewPapers()
 	{
 		String query;
@@ -120,7 +220,7 @@ public class DBManager {
 	    	List<Data> rowValues = new ArrayList<Data>();
 
 	    	while (rs.next()) {
-	    		Data data = new Data(rs.getString(3), rs.getString(8), rs.getString(9));
+	    		Data data = new Data(rs.getString(3), rs.getString(8), rs.getString(9), rs.getInt(1));
 	    	    rowValues.add(data);
 	    	}
 

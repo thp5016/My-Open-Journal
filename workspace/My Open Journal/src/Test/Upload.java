@@ -52,7 +52,7 @@ public class Upload extends SelectorComposer<Component> {
 		
 		// Get the path to upload the file to
 		String path = Executions.getCurrent().getDesktop().getWebApp().getRealPath("/");
-		path = path + "papers\\" + SessionManager.GetUser() + "\\";
+		path = path + "papers/" + SessionManager.GetUser() + "/";
 		System.out.println("Path: " + path);
 		Media media = event.getMedia();
 		if(media == null)
