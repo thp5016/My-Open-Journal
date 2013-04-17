@@ -3,7 +3,7 @@
 <zk>
 <?init class="Test.SessionManager"?>
 
-<grid id = allHomeCols>
+<grid id = "allHomeCols">
 	<columns>
 		<column>
 			<label value = "MOST POPULAR" style = "color: black; font-weight:bold; font-size:14px"/>
