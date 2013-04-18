@@ -15,7 +15,7 @@
 					</hbox>
 				</row>
 				<row>
-					<textbox id = "typedReview" width = "600px" mold = "rounded" rows = "13"/>
+					<textbox id = "typedComment" width = "600px" mold = "rounded" rows = "13"/>
 				</row>
 				<row>
 					<button id="submitComment"  style="color:black; font-weight:bold; font-size:14px" width="150px" label="Submit Comment" mold="trendy" onClick=""/>
