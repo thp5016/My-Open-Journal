@@ -32,7 +32,7 @@ public class AddReview extends GenericForwardComposer {
 		manager.InsertReview(paperId, id, review);
 	}
 
-	@Listen("onClick = #backTo")
+	@Listen("onClick = #backToPaper")
 	public void goBack() {
 		Executions.sendRedirect("index.zul");
 	}
