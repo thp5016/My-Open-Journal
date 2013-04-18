@@ -9,6 +9,11 @@ import org.zkoss.zul.*;
 
 public class Home {
 	
+	public static void GoHome()
+	{
+		Executions.sendRedirect("index.zul");
+	}
+	
 	// Displays the top 10 papers
 	public static void DisplayResult(Grid myGrid, List<Data> data)
 	{

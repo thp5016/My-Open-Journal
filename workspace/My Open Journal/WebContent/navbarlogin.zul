@@ -1,15 +1,16 @@
 <zk xmlns:h="http://www.w3.org/1999/xhtml">
-<h:image sclass="navbar" src="logo2.png"/>
-<h:br />
-<hbox sclass="navbar">
-<a href="index.zul" sclass="navbar">Home</a>
-<label sclass="navbar" value="|" />
-<a href="editprofile.zul" sclass="navbar">Profile</a>
-<label sclass="navbar" value="|" />
-<a href="upload.zul" sclass="navbar">Submit Paper</a>
-<label sclass="navbar" value="|" />
-<a href="contact.zul" sclass="navbar">Contact</a>
-<label sclass="navbar" value="|" />
-<a href="" sclass="navbar">Search</a>
-</hbox>
+	<hlayout sclass="navbar" style="text-align: center;">
+		<image src="logo2.png" onClick="Test.Home.GoHome()" sclass="center" />
+	</hlayout>
+	<hlayout sclass="navbar" style="text-align: center;">
+		<a href="index.zul" sclass="navbar">Home</a>
+		<label sclass="navbar" value="|" />
+		<a href="editprofile.zul" sclass="navbar">Profile</a>
+		<label sclass="navbar" value="|" />
+		<a href="upload.zul" sclass="navbar">Submit Paper</a>
+		<label sclass="navbar" value="|" />
+		<a href="contact.zul" sclass="navbar">Contact</a>
+		<label sclass="navbar" value="|" />
+		<a href="" sclass="navbar">Search</a>
+	</hlayout>
 </zk>
