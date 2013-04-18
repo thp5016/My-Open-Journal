@@ -5,6 +5,8 @@
 	<hlayout sclass="navbar" style="text-align: center;">
 		<a href="index.zul" sclass="navbar">Home</a>
 		<label sclass="navbar" value="|" />
+		<a href="logout.zul" sclass="navbar">Logout</a>
+		<label sclass="navbar" value="|" />
 		<a href="editprofile.zul" sclass="navbar">Profile</a>
 		<label sclass="navbar" value="|" />
 		<a href="upload.zul" sclass="navbar">Submit Paper</a>

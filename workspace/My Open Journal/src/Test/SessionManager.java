@@ -43,6 +43,11 @@ public class SessionManager extends SelectorComposer<Component> implements Initi
 		return username;
 	}
 	
+	public static void Logout()
+	{
+		Sessions.getCurrent().removeAttribute("user");
+	}
+	
 	// Checks to see if the user is logged in
 	public boolean checkSession() {
 		Session zkSession = Executions.getCurrent().getDesktop().getSession();
