@@ -3,7 +3,7 @@
 <zk>
 <?init class="Test.SessionManager"?>
 <div height="1px"/>
-<window width="722px" apply="Test.Register">
+<window width="50%" apply="Test.Register" >
 	<zscript><![CDATA[
 	   boolean hasZkex = true;
 	   try{
