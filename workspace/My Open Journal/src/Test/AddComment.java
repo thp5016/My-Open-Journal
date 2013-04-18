@@ -35,4 +35,5 @@ public class AddComment extends GenericForwardComposer {
   public void goBack() {
     Executions.sendRedirect("index.zul");
   }
+  
 }
