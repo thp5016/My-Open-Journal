@@ -36,4 +36,5 @@ public class AddReview extends GenericForwardComposer {
 	public void goBack() {
 		Executions.sendRedirect("index.zul");
 	}
+	
 }
