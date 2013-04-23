@@ -239,6 +239,7 @@ public class DBManager {
 	public boolean IsValidPassword(String user, String pass){
 		String query;
 		ResultSet rs;
+		String saltedAndHashedPass = SessionManager.saltAndHash(pass);
 		
 		connection = new DBConnection("10.2.65.20", "myopenjournal", "sa", "umaxistheman");
     	query = "select Password from Users where Username= ?;";
@@ -248,7 +249,7 @@ public class DBManager {
 
 			rs = stmt.executeQuery();
 			rs.next();
-			if(pass.equals(rs.getString(1)))
+			if(saltedAndHashedPass.equals(rs.getString(1)))
 	    	{
 				System.out.println(user + " has successfully logged in!!");
 		    	rs.close();

@@ -29,10 +29,11 @@ public class Register extends SelectorComposer<Component> {
     @Listen("onClick = #registerButton")
     public void InsertUser() {
 		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		String pass = SessionManager.saltAndHash(pwd.getText());
 		Date date = new Date();
     	DBManager manager = new DBManager();
     	// Insert User into database
-    	manager.InsertUser(username.getText(), first.getText(), last.getText(), pwd.getText(), "0", dateFormat.format(date)); 
+    	manager.InsertUser(username.getText(), first.getText(), last.getText(), pass, "0", dateFormat.format(date)); 
 		Executions.sendRedirect("index.zul");
     }
 	

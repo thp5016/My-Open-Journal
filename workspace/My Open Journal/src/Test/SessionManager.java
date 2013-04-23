@@ -12,6 +12,9 @@ package Test;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.math.BigInteger;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import org.zkoss.zk.ui.Component;
 import org.zkoss.zk.ui.Executions;
 import org.zkoss.zk.ui.Page;
@@ -80,5 +83,32 @@ public class SessionManager extends SelectorComposer<Component> implements Initi
 			return;
 		}
 
+	}
+	// Applies a salt to the passed input and hashes the input with MD5
+	// Returns the hashed and salted input as a String
+	public static String saltAndHash(String input)
+	{
+		String md5 = null;
+		String salt = "Random$SaltValue#WithSpecialCharacters12@$@4&#%^$*";
+        String saltedInput = input + salt;
+        
+        if(null == input) return null;
+         
+        try {
+             
+	        //Create MessageDigest object for MD5
+	        MessageDigest digest = MessageDigest.getInstance("MD5");
+	         
+	        //Update input string in message digest
+	        digest.update(saltedInput.getBytes(), 0, saltedInput.length());
+	 
+	        //Converts message digest value in base 16 (hex)
+	        md5 = new BigInteger(1, digest.digest()).toString(16);
+ 
+        } catch (NoSuchAlgorithmException e) {
+ 
+            e.printStackTrace();
+        }
+        return md5;
 	}
 }
