@@ -12,19 +12,34 @@ import org.zkoss.zul.impl.InputElement;
 
 public class Paper extends GenericForwardComposer {
 
+int paper_id =
+
 @Listen("onClick = #downloadLink")
 public void viewPaper()
-
+{
+  // redirect to the pdf id specified by the page url
+  // 
+}
 @Listen("onClick = #upVotes")
 public void upVote()
-
+{
+  // add a new entry to the paper votes table
+  // update the paper's upvotes count
+}
 @Listen("onClick = #downVotes")
 public void downVote()
-
+{
+  // add a new entry to the papers votes table
+  // update the paper's downvotes count
+}
 @Listen("onClick = #reviewLink")
 public void viewReview()
-
+{
+  // redirect to reviews page
+}
 @Listen("onClick = #addReviewLink")
 public void addReview()
-
+{
+  // redirect to add review page
+}
 }
