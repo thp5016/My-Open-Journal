@@ -12,7 +12,8 @@ import org.zkoss.zul.impl.InputElement;
 
 public class Paper extends GenericForwardComposer {
 
-int paper_id =
+//need to implement a funciton in session manager
+int paper_id = manager.GetID(paper);
 
 @Listen("onClick = #downloadLink")
 public void viewPaper()
