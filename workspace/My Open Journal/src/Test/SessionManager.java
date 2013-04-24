@@ -32,7 +32,6 @@ public class SessionManager extends SelectorComposer<Component> implements Initi
 		try {
 			Sessions.getCurrent().setAttribute("user", username);
 			Sessions.getCurrent().setAttribute("password", password);
-			Executions.sendRedirect("index.zul");
 		} 
 		finally {
 		}

@@ -6,6 +6,7 @@ import org.zkoss.zk.ui.Component;
 import org.zkoss.zk.ui.Executions;
 import org.zkoss.zk.ui.Page;
 import org.zkoss.zk.ui.event.Event;
+import org.zkoss.zk.ui.event.EventListener;
 import org.zkoss.zk.ui.select.SelectorComposer;
 import org.zkoss.zk.ui.select.annotation.Listen;
 import org.zkoss.zk.ui.select.annotation.Wire;
@@ -13,15 +14,17 @@ import org.zkoss.zk.ui.util.GenericForwardComposer;
 import org.zkoss.zk.ui.util.Initiator;
 import org.zkoss.zul.Grid;
 import org.zkoss.zul.Label;
+import org.zkoss.zul.Messagebox;
 import org.zkoss.zul.Textbox;
 import org.zkoss.zul.Toolbarbutton;
+import org.zkoss.zul.Messagebox.ClickEvent;
 import org.zkoss.zul.impl.InputElement;
 
 public class Paper extends SelectorComposer<Grid> {
 
 	@Wire
 	Label paperTitle;
-	
+
 	@Wire
 	Label byAuthor;
 	
@@ -39,8 +42,7 @@ public class Paper extends SelectorComposer<Grid> {
 	String user = SessionManager.GetUser();
 
 	@Listen("onClick = #downloadLink")
-	public void viewPaper()
-	{
+	public void viewPaper() {
 		// redirect to the pdf id specified by the page url
 		// Executions.sendRedirect(/* pdf url */);
 		String path;
@@ -50,59 +52,76 @@ public class Paper extends SelectorComposer<Grid> {
 
 		Executions.sendRedirect(path);
 	}
+	
 	@Listen("onClick = #upVotes")
-	public void upVote()
-	{
+	public void upVote() {
 		// add a new entry to the paper votes table
 		// update the paper's upvotes count
 		int userID;
 		DBManager manager = new DBManager();
 		userID = manager.GetID(user);
-		if(userID != -1)
-		{
-			if(manager.CanVote(paperID, userID))
-			{
+		if(userID != -1) {
+			if(manager.CanVote(paperID, userID)) {
 				manager.InsertUpvote(paperID, userID);
+				Executions.sendRedirect("paper.zul");
 			}
-			Executions.sendRedirect("paper.zul");
+			else
+				Messagebox.show("You can only upvote a paper one time!!");
+		}
+		else
+		{
+			EventListener<ClickEvent> clickListener = new EventListener<Messagebox.ClickEvent>() {
+				public void onEvent(ClickEvent event) {
+					Executions.sendRedirect("login.zul");
+				}
+			};
+			Messagebox.show("Please login to upvote a paper!!", "", new Messagebox.Button[] {
+    		        Messagebox.Button.OK}, Messagebox.INFORMATION, clickListener);
 		}
 	}
+		
 	@Listen("onClick = #dnVotes")
-	public void downVote()
-	{
+	public void downVote() {
 		// add a new entry to the papers votes table
 		// update the paper's downvotes count
 		int userID;
 		DBManager manager = new DBManager();
 		userID = manager.GetID(user);
-		if(userID != -1)
-		{
-			if(manager.CanVote(paperID, userID))
-			{
+		if(userID != -1) {
+			if(manager.CanVote(paperID, userID)) {
 				manager.InsertDownvote(paperID, userID);
+				Executions.sendRedirect("paper.zul");
 			}
-			Executions.sendRedirect("paper.zul");
+			else
+				Messagebox.show("You can only downvote a paper one time!!");
+		}
+		else {
+			EventListener<ClickEvent> clickListener = new EventListener<Messagebox.ClickEvent>() {
+				public void onEvent(ClickEvent event) {
+					Executions.sendRedirect("login.zul");
+				}
+			};
+			Messagebox.show("Please login to downvote a paper!!", "", new Messagebox.Button[] {
+    		        Messagebox.Button.OK}, Messagebox.INFORMATION, clickListener);
 		}
 	}
+
 	@Listen("onClick = #reviewLink")
-	public void viewReview()
-	{
-		// redirect to reviews page
-	}
-	@Listen("onClick = #addReviewLink")
-	public void addReview()
-	{
-		// redirect to add review page
+	public void viewReview() {
+		Executions.sendRedirect("viewreviews.zul");
 	}
 	
-	public void SetTitle()
-	{
+	@Listen("onClick = #addReviewLink")
+	public void addReview() {
+		Executions.sendRedirect("review.zul");
+	}
+	
+	public void SetTitle() {
 		DBManager manager = new DBManager();
 		paperTitle.setValue("Title: " + manager.GetPaperTitle(paperID));
 	}
 	
-	public void SetAuthor()
-	{
+	public void SetAuthor() {
 		int author;
 		String username;
 		DBManager manager = new DBManager();
@@ -111,20 +130,17 @@ public class Paper extends SelectorComposer<Grid> {
 		byAuthor.setValue("Author: " + manager.GetUsername(author));
 	}
 	
-	public void SetDescription()
-	{
+	public void SetDescription() {
 		DBManager manager = new DBManager();
 		description.setValue("Description: " + manager.GetPaperDescription(paperID));
 	}
 	
-	public void SetUpvotes()
-	{
+	public void SetUpvotes() {
 		DBManager manager = new DBManager();
 		upVotes.setLabel("" + manager.GetUpvotes(paperID) + "▲ up");
 	}
 	
-	public void SetDownvotes()
-	{
+	public void SetDownvotes() {
 		DBManager manager = new DBManager();
 		dnVotes.setLabel(manager.GetDownvotes(paperID) + "▼ dn");
 	}

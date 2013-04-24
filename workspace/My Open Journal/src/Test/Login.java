@@ -41,10 +41,10 @@ public class Login extends SelectorComposer<Component>{
     		        Messagebox.Button.OK}, Messagebox.INFORMATION, clickListener);
     		}
     		else
-    			System.out.println("Incorrect Password!!");
+    			Messagebox.show("Invalid password!!");    	
     	}
     	else
-    		System.out.println("Invalid User!!");
+			Messagebox.show("Invalid username!!");    	
     }
     
     // Redirect user to register page if they click register button
