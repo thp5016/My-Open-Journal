@@ -35,7 +35,7 @@
 	 	// Create Registration form
 		]]></zscript>
 		<div >
-			<grid oddRowSclass = false>
+			<grid oddRowSclass = "false">
 				<rows>
 					<row height = "35px">
 						<label value = "Register" style="color:black; font-weight:bold; font-size:20px"/>

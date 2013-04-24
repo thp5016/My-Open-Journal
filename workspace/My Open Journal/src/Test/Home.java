@@ -27,7 +27,7 @@ public class Home {
 	        {
 				@Override
 				public void onEvent(Event event) throws Exception {
-					DBManager manager = new DBManager();
+					SessionManager.SetPaper(id);
 					Executions.sendRedirect("paper.zul");
 				}
 	        }

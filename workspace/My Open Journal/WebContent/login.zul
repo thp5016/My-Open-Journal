@@ -3,7 +3,7 @@
 <zk>
 <?init class="Test.SessionManager"?>
 	<window  apply="Test.Login" >
-		<grid oddRowSclass = false>	    
+		<grid oddRowSclass = "false">	    
 		    <rows>
 		    	<row height = "35px">
 					<label value = "Login" style="color:black; font-weight:bold; font-size:20px"/>
