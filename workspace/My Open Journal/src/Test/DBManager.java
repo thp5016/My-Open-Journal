@@ -82,6 +82,54 @@ public class DBManager {
 		}
 	}
 	
+	public String GetUsername(int id)
+	{
+		String user;
+		String query;
+		ResultSet rs;
+		connection = new DBConnection("10.2.65.20", "myopenjournal", "sa", "umaxistheman");
+    	query = "select Username from Users where User_ID = ?;";
+    	try {
+			PreparedStatement stmt = connection.GetConnection().prepareStatement(query);
+			stmt.setInt(1, id);
+			rs = stmt.executeQuery();
+			rs.next();
+			user = rs.getString(1);
+			rs.close();
+			stmt.close();
+	    	connection.Disconnect();
+	    	return user;
+		} 
+		catch (SQLException e) {
+			System.out.println("Failure to Get Top Papers: " + e.getMessage());
+			return null;
+		}
+	}
+	
+	public String GetPaperDescription(int id)
+	{
+		String description;
+		String query;
+		ResultSet rs;
+		connection = new DBConnection("10.2.65.20", "myopenjournal", "sa", "umaxistheman");
+    	query = "select Description from Papers where Paper_ID = ?;";
+    	try {
+			PreparedStatement stmt = connection.GetConnection().prepareStatement(query);
+			stmt.setInt(1, id);
+			rs = stmt.executeQuery();
+			rs.next();
+			description = rs.getString(1);
+			rs.close();
+			stmt.close();
+	    	connection.Disconnect();
+	    	return description;
+		} 
+		catch (SQLException e) {
+			System.out.println("Failure to Get Top Papers: " + e.getMessage());
+			return null;
+		}
+	}
+	
 	public boolean InsertPaper(int authorID, String title, String path, String description, String date)
 	{
 		String query;
@@ -103,6 +151,54 @@ public class DBManager {
 		catch (SQLException e) {
 			System.out.println("Failure to insert user: " + e.getMessage());
 			return false;
+		}
+	}
+	
+	public int GetPaperAuthor(int id)
+	{
+		int author;
+		String query;
+		ResultSet rs;
+		connection = new DBConnection("10.2.65.20", "myopenjournal", "sa", "umaxistheman");
+    	query = "select Author_ID from Papers where Paper_ID = ?;";
+    	try {
+			PreparedStatement stmt = connection.GetConnection().prepareStatement(query);
+			stmt.setInt(1, id);
+			rs = stmt.executeQuery();
+			rs.next();
+			author = rs.getInt(1);
+			rs.close();
+			stmt.close();
+	    	connection.Disconnect();
+	    	return author;
+		} 
+		catch (SQLException e) {
+			System.out.println("Failure to Get Top Papers: " + e.getMessage());
+			return -1;
+		}
+	}
+	
+	public String GetPaperTitle(int id)
+	{
+		String title;
+		String query;
+		ResultSet rs;
+		connection = new DBConnection("10.2.65.20", "myopenjournal", "sa", "umaxistheman");
+    	query = "select Title from Papers where Paper_ID = ?;";
+    	try {
+			PreparedStatement stmt = connection.GetConnection().prepareStatement(query);
+			stmt.setInt(1, id);
+			rs = stmt.executeQuery();
+			rs.next();
+			title = rs.getString(1);
+			rs.close();
+			stmt.close();
+	    	connection.Disconnect();
+	    	return title;
+		} 
+		catch (SQLException e) {
+			System.out.println("Failure to Get Top Papers: " + e.getMessage());
+			return null;
 		}
 	}
 	
@@ -129,8 +225,6 @@ public class DBManager {
 			System.out.println("Failure to Get Top Papers: " + e.getMessage());
 			return null;
 		}
-
-		
 	}
 	
 	public List<Data> GetTopPapers()
@@ -346,13 +440,61 @@ public class DBManager {
 		}
 	}
 	
+	public int GetUpvotes(int id)
+	{
+		int upvotes;
+		String query;
+		ResultSet rs;
+		connection = new DBConnection("10.2.65.20", "myopenjournal", "sa", "umaxistheman");
+    	query = "select Upvotes from Papers where Paper_ID = ?;";
+    	try {
+			PreparedStatement stmt = connection.GetConnection().prepareStatement(query);
+			stmt.setInt(1, id);
+			rs = stmt.executeQuery();
+			rs.next();
+			upvotes = rs.getInt(1);
+			rs.close();
+			stmt.close();
+	    	connection.Disconnect();
+	    	return upvotes;
+		} 
+		catch (SQLException e) {
+			System.out.println("Failure to Get Top Papers: " + e.getMessage());
+			return -1;
+		}
+	}
+	
+	public int GetDownvotes(int id)
+	{
+		int downvotes;
+		String query;
+		ResultSet rs;
+		connection = new DBConnection("10.2.65.20", "myopenjournal", "sa", "umaxistheman");
+    	query = "select Downvotes from Papers where Paper_ID = ?;";
+    	try {
+			PreparedStatement stmt = connection.GetConnection().prepareStatement(query);
+			stmt.setInt(1, id);
+			rs = stmt.executeQuery();
+			rs.next();
+			downvotes = rs.getInt(1);
+			rs.close();
+			stmt.close();
+	    	connection.Disconnect();
+	    	return downvotes;
+		} 
+		catch (SQLException e) {
+			System.out.println("Failure to Get Top Papers: " + e.getMessage());
+			return -1;
+		}
+	}
+	
 	// This function inserts a upvote and updates the corresponding paper table
 	public boolean InsertUpvote(int paperID, int userID) {
 		String query1;
 		String query2;
 		
 		connection = new DBConnection("10.2.65.20", "myopenjournal", "sa", "umaxistheman");
-    		query1 = "INSERT INTO PaperVotes (Paper_ID, Commenter_ID, Up_Down, Report) VALUES (?, ?, 1, 0)";
+    		query1 = "INSERT INTO PaperVotes (Paper_ID, User_ID, Up_Down, Report) VALUES (?, ?, 1, 0)";
     		query2 = "UPDATE Papers SET Upvotes = Upvotes+1 WHERE Paper_ID = ?";
 		try {
 			PreparedStatement stmt = connection.GetConnection().prepareStatement(query1);
@@ -378,7 +520,7 @@ public class DBManager {
 		String query2;
 		
 		connection = new DBConnection("10.2.65.20", "myopenjournal", "sa", "umaxistheman");
-    		query1 = "INSERT INTO PaperVotes (Paper_ID, Commenter_ID, Up_Down, Report) VALUES (?, ?, 0, 0)";
+    		query1 = "INSERT INTO PaperVotes (Paper_ID, User_ID, Up_Down, Report) VALUES (?, ?, 0, 0)";
     		query2 = "UPDATE Papers SET Downvotes = Downvotes+1 WHERE Paper_ID = ?";
 		try {
 			PreparedStatement stmt = connection.GetConnection().prepareStatement(query1);

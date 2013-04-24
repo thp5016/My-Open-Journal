@@ -12,7 +12,7 @@
 				<row height = "30px">
 					<textbox id = "title" width="300px" constraint="no empty" mold="rounded"/>		 
 					<hbox align="center">
-						<button id="uploadPaper" upload="true" style="font-weight:bold; font-size:14px" width="160px" label="Upload File" mold="trendy" onClick=""/>					
+						<button id="uploadPaper" upload="true" style="font-weight:bold; font-size:14px" width="160px" label="Upload File" mold="trendy"/>					
 						<label value="(*.pdf only)"/>
 				 	</hbox>
 				</row>

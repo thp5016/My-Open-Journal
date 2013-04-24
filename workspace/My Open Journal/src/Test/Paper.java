@@ -1,71 +1,146 @@
 package Test;
 
+import java.util.Map;
+
 import org.zkoss.zk.ui.Component;
 import org.zkoss.zk.ui.Executions;
+import org.zkoss.zk.ui.Page;
 import org.zkoss.zk.ui.event.Event;
 import org.zkoss.zk.ui.select.SelectorComposer;
 import org.zkoss.zk.ui.select.annotation.Listen;
 import org.zkoss.zk.ui.select.annotation.Wire;
 import org.zkoss.zk.ui.util.GenericForwardComposer;
+import org.zkoss.zk.ui.util.Initiator;
+import org.zkoss.zul.Grid;
+import org.zkoss.zul.Label;
 import org.zkoss.zul.Textbox;
+import org.zkoss.zul.Toolbarbutton;
 import org.zkoss.zul.impl.InputElement;
 
-public class Paper extends GenericForwardComposer 
-{
-  //need to implement a funciton in session manager
-  int paperID = SessionManager.GetPaper(paper);
-  String user = SessionManager.GetUser(user);
+public class Paper extends SelectorComposer<Grid> {
 
-  @Listen("onClick = #downloadLink")
-  public void viewPaper()
-  {
-    // redirect to the pdf id specified by the page url
-    // Executions.sendRedirect(/* pdf url */);
-    String path;
-    
-    DBManager manager = new DBManager();
-    path = manager.GetPaperPath(int paperID);
-    
-    Executions.sendRedirect(path);
-  }
-  @Listen("onClick = #upVotes")
-  public void upVote()
-  {
-    // add a new entry to the paper votes table
-    // update the paper's upvotes count
-    int userID;
-    DBManager manager = new DBManager();
-    userID = manager.GetPaperID(paper);
-    
-    if(manager.CanVote(paperID, userID))
-    {
-      manager.InsertUpvote(paperID, userID);
-    }
-    
-  }
-  @Listen("onClick = #downVotes")
-  public void downVote()
-  {
-    // add a new entry to the papers votes table
-    // update the paper's downvotes count
-    int userID;
-    DBManager manager = new DBManager();
-    userID = manager.GetPaperID(paper);
-    
-    if(manager.CanVote(paperID, userID))
-    {
-      manager.InsertDownvote(paperID, userID);
-    }
-    
-  }
-  @Listen("onClick = #reviewLink")
-  public void viewReview()
-  {
-    // redirect to reviews page
-  }
-  @Listen("onClick = #addReviewLink")
-  public void addReview()
-  {
-    // redirect to add review page
-  }
+	@Wire
+	Label paperTitle;
+	
+	@Wire
+	Label byAuthor;
+	
+	@Wire
+	Label description;
+	
+	@Wire
+	Toolbarbutton upVotes;
+	
+	@Wire
+	Toolbarbutton dnVotes;
+
+	//need to implement a function in session manager
+	int paperID = SessionManager.GetPaper();
+	String user = SessionManager.GetUser();
+
+	@Listen("onClick = #downloadLink")
+	public void viewPaper()
+	{
+		// redirect to the pdf id specified by the page url
+		// Executions.sendRedirect(/* pdf url */);
+		String path;
+
+		DBManager manager = new DBManager();
+		path = manager.GetPaperPath(paperID);
+
+		Executions.sendRedirect(path);
+	}
+	@Listen("onClick = #upVotes")
+	public void upVote()
+	{
+		// add a new entry to the paper votes table
+		// update the paper's upvotes count
+		int userID;
+		DBManager manager = new DBManager();
+		userID = manager.GetID(user);
+		if(userID != -1)
+		{
+			if(manager.CanVote(paperID, userID))
+			{
+				manager.InsertUpvote(paperID, userID);
+			}
+			Executions.sendRedirect("paper.zul");
+		}
+	}
+	@Listen("onClick = #dnVotes")
+	public void downVote()
+	{
+		// add a new entry to the papers votes table
+		// update the paper's downvotes count
+		int userID;
+		DBManager manager = new DBManager();
+		userID = manager.GetID(user);
+		if(userID != -1)
+		{
+			if(manager.CanVote(paperID, userID))
+			{
+				manager.InsertDownvote(paperID, userID);
+			}
+			Executions.sendRedirect("paper.zul");
+		}
+	}
+	@Listen("onClick = #reviewLink")
+	public void viewReview()
+	{
+		// redirect to reviews page
+	}
+	@Listen("onClick = #addReviewLink")
+	public void addReview()
+	{
+		// redirect to add review page
+	}
+	
+	public void SetTitle()
+	{
+		DBManager manager = new DBManager();
+		paperTitle.setValue("Title: " + manager.GetPaperTitle(paperID));
+	}
+	
+	public void SetAuthor()
+	{
+		int author;
+		String username;
+		DBManager manager = new DBManager();
+		author = manager.GetPaperAuthor(paperID);
+		username = manager.GetUsername(author);
+		byAuthor.setValue("Author: " + manager.GetUsername(author));
+	}
+	
+	public void SetDescription()
+	{
+		DBManager manager = new DBManager();
+		description.setValue("Description: " + manager.GetPaperDescription(paperID));
+	}
+	
+	public void SetUpvotes()
+	{
+		DBManager manager = new DBManager();
+		upVotes.setLabel("" + manager.GetUpvotes(paperID) + "▲ up");
+	}
+	
+	public void SetDownvotes()
+	{
+		DBManager manager = new DBManager();
+		dnVotes.setLabel(manager.GetDownvotes(paperID) + "▼ dn");
+	}
+	
+	   public void doAfterCompose(Grid comp) {
+		      try {
+				super.doAfterCompose(comp);
+				SetTitle();
+				SetAuthor();
+				SetDescription();
+				SetUpvotes();
+				SetDownvotes();
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} //wire variables and event listners
+		      //do whatever you want (you could access wired variables here)
+		   }
 }

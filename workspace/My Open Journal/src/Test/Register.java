@@ -5,8 +5,11 @@ import java.util.Date;
 
 import org.zkoss.zk.ui.Component;
 import org.zkoss.zk.ui.Executions;
+import org.zkoss.zk.ui.event.EventListener;
 import org.zkoss.zk.ui.select.SelectorComposer;
 import org.zkoss.zk.ui.select.annotation.*;
+import org.zkoss.zul.Messagebox;
+import org.zkoss.zul.Messagebox.ClickEvent;
 import org.zkoss.zul.Textbox;
 
 // Registers the user with info specified in registration form and inserts a new
@@ -34,7 +37,14 @@ public class Register extends SelectorComposer<Component> {
     	DBManager manager = new DBManager();
     	// Insert User into database
     	manager.InsertUser(username.getText(), first.getText(), last.getText(), pass, email.getText(), "0", dateFormat.format(date)); 
-		Executions.sendRedirect("index.zul");
+		EventListener<ClickEvent> clickListener = new EventListener<Messagebox.ClickEvent>() {
+			public void onEvent(ClickEvent event)
+			{
+				Executions.sendRedirect("index.zul");
+			}
+		};
+		Messagebox.show(username.getText() + " has successfully registered!!", "", new Messagebox.Button[]{
+	        Messagebox.Button.OK}, Messagebox.QUESTION, clickListener);
     }
 	
 }
