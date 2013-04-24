@@ -3,31 +3,30 @@
 <zk>
 <?init class="Test.SessionManager"?>
 	<window  apply="Test.Login" >
-		<grid>	    
+		<grid oddRowSclass = false>	    
 		    <rows>
+		    	<row height = "35px">
+					<label value = "Login" style="color:black; font-weight:bold; font-size:20px"/>
+				</row>
 		        <row>
-					<hbox>
-						<label  value="Username: " style = "font-weight:bold; fontsize:18px" />
-						<textbox id="username" style = "width:110px"/>
+					<hbox align = "center">
+						<label  value="Username: " style = "color: black; font-weight:bold; font-size:16px" />
+						<textbox id="username" style = "width:140px; font-size:16px" mold = "rounded"/>
 					</hbox>
 		        </row>
 		        <row>
-		       		<hbox>
-		       			<label  value="Password: " style = "font-weight:bold; fontsize:18px" />
-		       			<textbox id="pwd" type="password" style = "width:110px"/>
+		       		<hbox align = "center">
+		       			<label  value="Password: " style = "color:black; font-weight:bold; font-size:16px" />
+		       			<textbox id="pwd" type="password" style = "width:140px; font-size: 16px" mold = "rounded"/>
 		       		</hbox>
 		        </row>
 		        <row>
-		        	<hbox>
-		        		<checkbox />
-		        		<label value="Remember Me?" style = "fontsize:18px"/>
-		        		<button id="login" label="Sign In" style = "height:19px" />
-		        	</hbox>
+		        	<button id="login" label="Log In" style = "color:black; font-size:14px; font-weight:bold"/>
 		        </row>
 		        <row>
-		        	<hbox>
-		        		<label value="Not a member? Sign up here: " style = "fontsize:20px" />
-		       			<button id="register" label="Register" style = "height:19px" />
+		        	<hbox align = "center">
+		        		<label value="Not a member? Sign up here: " style = "font-size:14px" />
+		       			<button id="register" label="Register" style = "font-size:14px; font-weight:bold"/>
 		       		</hbox>
 		        </row>
 		    </rows>

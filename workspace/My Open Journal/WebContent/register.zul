@@ -3,7 +3,7 @@
 <zk>
 <?init class="Test.SessionManager"?>
 <div height="1px"/>
-<window width="50%" apply="Test.Register" >
+<window width="722px" apply="Test.Register">
 	<zscript><![CDATA[
 	   boolean hasZkex = true;
 	   try{
@@ -13,8 +13,6 @@
 	   }						    
 	]]></zscript>
 	
-	<groupbox mold="3d" closable="false" >
-		<caption label="Register Form"/>
 		<zscript>
 		<![CDATA[//@IMPORT
 		import org.zkoss.lang.Strings;
@@ -37,72 +35,81 @@
 	 	// Create Registration form
 		]]></zscript>
 		<div >
-			<grid>
+			<grid oddRowSclass = false>
 				<rows>
-					<row>
-						First Name :
-						<textbox id="first" width="200px"
-							constraint="/[0-9a-zA-Z]+/" />
+					<row height = "35px">
+						<label value = "Register" style="color:black; font-weight:bold; font-size:20px"/>
 					</row>
 					<row>
-						Last Name :
-						<textbox id="last" width="200px"
-							constraint="/[0-9a-zA-Z]+/" />
+						<hbox align = "center">
+							<label value = "First Name:" style = "color:black; font-weight:bold; font-size:16px"/>
+							<textbox id="first" width="200px" style = "font-size:16px"
+								constraint="/[0-9a-zA-Z]+/" />
+						</hbox>
 					</row>
 					<row>
-						Username :
-						<textbox id="username" width="200px"
-							constraint="/[0-9a-zA-Z]+/" />
+						<hbox align = "center">
+							<label value = "Last Name:" style = "color:black; font-weight:bold; font-size:16px"/>
+							<textbox id="last" width="200px" style = "font-size:16px"
+								constraint="/[0-9a-zA-Z]+/" />
+						</hbox>
 					</row>
 					<row>
-						Password :
-						<textbox id="pwd" width="200px" type="password"
-							constraint="/[0-9a-zA-Z]+/" />
+						<hbox align = "center">
+							<label value = "Username:" style = "color:black; font-weight:bold; font-size:16px"/>
+							<textbox id="username" width="200px" style ="font-size:16px"
+								constraint="/[0-9a-zA-Z]+/" />
+						</hbox>
 					</row>
 					<row>
-						Re-enter Password :
-						<textbox id="pwd2" width="200px" type="password"
+						<hbox align = "center">
+							<label value = "Password:" style = "color:black; font-weight:bold; font-size:16px"/>
+							<textbox id="pwd" width="200px" type="password" style = "font-size:16px"
+								constraint="/[0-9a-zA-Z]+/" />
+						</hbox>
+					</row>
+					<row>
+						<hbox align = "center">
+							<label value = "Re-enter Password:" style = "color:black; font-weight:bold; font-size:16px"/>
+							<textbox id="pwd2" width="200px" type="password" style = "font-size:16px"
 							constraint="${pwc}" />
+						</hbox>
 					</row>
 					<row>
-						Email :
-						<textbox id="email" width="200px"
-							constraint="/.+@.+\.[a-z]+/: Please enter an e-mail address" />
-					</row>
-				
-						
+						<hbox align = "center">
+							<label value = "Email:" style = "color:black; font-weight:bold; font-size:16px"/>
+							<textbox id="email" width="200px" style = "font-size:16px"
+								constraint="/.+@.+\.[a-z]+/: Please enter an e-mail address" />
+						</hbox>
+					</row>						
 					<row>
-						Credentials:
+						<label value = "Credentials:" style = "color:black; font-weight:bold; font-size:16px"/>
 					</row>
 					<row>
-						<div></div>
 						<hbox>
-												<checkbox id="professor"></checkbox>
-						Professor
+							<checkbox id="professor"></checkbox>
+							<label value ="Professor" style = "color:black; font-size:14px"/>
 						</hbox>
 					</row>
 					<row>
-					<div></div>
-					<hbox>
-											<checkbox id="masters"></checkbox>
-						Masters
+						<hbox>
+							<checkbox id="masters"></checkbox>
+							<label value ="Masters" style = "color:black; font-size:14px"/>
 						</hbox>
 					</row>
 					<row>
-					<div></div>
-					<hbox>
-											<checkbox id="PhD"></checkbox>
-					
-						PhD 
+						<hbox>
+							<checkbox id="PhD"></checkbox>					
+							<label value ="PhD" style = "color:black; font-size:14px"/>
 						</hbox>
 					</row>
 
-				</rows>
+				<row>
+				<button id="registerButton" label="Register" style = "color:black; font-weight:bold; font-size:14px" mold = "trendy"/>
+			</row>
+			</rows>
 			</grid>			
-			<hbox pack="center" width="100%">
-				<button id="registerButton" label="Register"/>
-			</hbox>
+
 		</div>
-	</groupbox>
 </window>
 </zk>
