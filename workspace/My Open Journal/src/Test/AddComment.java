@@ -19,16 +19,16 @@ public class AddComment extends GenericForwardComposer {
 
   @Listen("onClick = #submitReview")
   public void submitComment() {
-    int id;
-    int commentId;
-    String user;
-    String comment;
+    int id;           // user id commenting
+    int reviewId;     // review id comment is being posted in response to
+    String user;      // username posting the comment
+    String comment;   // the comment
     DBManager manager = new DBManager();
   
     user = SessionManager.GetUser();
     id = manager.GetID(user);
     comment = manager.GetTypedReview(user);
-    manager.InsertComment(commentId, id, comment);
+    manager.InsertComment(reviewId, id, comment);
   }
 
   @Listen("onClick = #backToReview")
