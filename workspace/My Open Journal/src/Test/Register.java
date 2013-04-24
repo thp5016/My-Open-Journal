@@ -33,7 +33,7 @@ public class Register extends SelectorComposer<Component> {
 		Date date = new Date();
     	DBManager manager = new DBManager();
     	// Insert User into database
-    	manager.InsertUser(username.getText(), first.getText(), last.getText(), pass, "0", dateFormat.format(date)); 
+    	manager.InsertUser(username.getText(), first.getText(), last.getText(), pass, email.getText(), "0", dateFormat.format(date)); 
 		Executions.sendRedirect("index.zul");
     }
 	

@@ -10,18 +10,19 @@ public class DBManager {
 	private DBConnection connection;
 	
 	// Creates a new entry in the User database with the specified values
-	public boolean InsertUser(String user, String firstName, String lastName, String pass, String admin, String date) {
+	public boolean InsertUser(String user, String firstName, String lastName, String pass, String email, String admin, String date) {
 		String query;
 		
 		connection = new DBConnection("10.2.65.20", "myopenjournal", "sa", "umaxistheman");
-    	query = "INSERT INTO Users (Username, First_Name, Last_Name,  Password, Register_Date) VALUES (?, ?, ?, ?, ?);";
+    	query = "INSERT INTO Users (Username, First_Name, Last_Name,  Password, Email, Register_Date) VALUES (?, ?, ?, ?, ?, ?);";
 		try {
 			PreparedStatement stmt = connection.GetConnection().prepareStatement(query);
 			stmt.setString(1, user);
 			stmt.setString(2, firstName);
 			stmt.setString(3, lastName);
 			stmt.setString(4, pass);
-			stmt.setString(5, date);
+			stmt.setString(5, email);
+			stmt.setString(6, date);
 			stmt.executeUpdate();
 			stmt.close();
 	    	connection.Disconnect();
@@ -347,7 +348,8 @@ public class DBManager {
 	
 	// This function inserts a upvote and updates the corresponding paper table
 	public boolean InsertUpvote(int paperID, int userID) {
-		String query;
+		String query1;
+		String query2;
 		
 		connection = new DBConnection("10.2.65.20", "myopenjournal", "sa", "umaxistheman");
     		query1 = "INSERT INTO PaperVotes (Paper_ID, Commenter_ID, Up_Down, Report) VALUES (?, ?, 1, 0)";
@@ -372,7 +374,8 @@ public class DBManager {
 	
 	// This function inserts a downvote and updates the corresponding paper table
 	public boolean InsertDownvote(int paperID, int userID) {
-		String query;
+		String query1;
+		String query2;
 		
 		connection = new DBConnection("10.2.65.20", "myopenjournal", "sa", "umaxistheman");
     		query1 = "INSERT INTO PaperVotes (Paper_ID, Commenter_ID, Up_Down, Report) VALUES (?, ?, 0, 0)";
@@ -399,14 +402,14 @@ public class DBManager {
 	public boolean CanVote(int paperID, int userID) {
 		String query;
 		ResultSet rs;
-		boolean isEmpty;
+		boolean canVote;
 		
 		connection = new DBConnection("10.2.65.20", "myopenjournal", "sa", "umaxistheman");
     		query = "SELECT * FROM PaperVotes WHERE Paper_ID = ? AND User_ID = ?";
 		try {
 			PreparedStatement stmt = connection.GetConnection().prepareStatement(query);
-			stmt.setString(1, paperID);
-			stmt.setString(2, userID);
+			stmt.setInt(1, paperID);
+			stmt.setInt(2, userID);
 			rs = stmt.executeQuery();
 			if(rs.next())
 				canVote = false;
