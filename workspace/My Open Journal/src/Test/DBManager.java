@@ -145,7 +145,7 @@ public class DBManager {
 	    	List<Data> rowValues = new ArrayList<Data>();
 
 	    	while (rs.next()) {
-	    		Data data = new Data(rs.getString(3), rs.getString(8), rs.getString(9), rs.getInt(1));
+	    		Data data = new Data(rs.getString(4), rs.getString(9), rs.getString(10), rs.getInt(1));
 	    	    rowValues.add(data);
 	    	}
 
@@ -222,7 +222,7 @@ public class DBManager {
 	    	List<Data> rowValues = new ArrayList<Data>();
 
 	    	while (rs.next()) {
-	    		Data data = new Data(rs.getString(3), rs.getString(8), rs.getString(9), rs.getInt(1));
+	    		Data data = new Data(rs.getString(4), rs.getString(9), rs.getString(10), rs.getInt(1));
 	    	    rowValues.add(data);
 	    	}
 
