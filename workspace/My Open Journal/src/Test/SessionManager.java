@@ -37,6 +37,16 @@ public class SessionManager extends SelectorComposer<Component> implements Initi
 		finally {
 		}
 	}
+	
+	public static void SetPaper(int paperID) {
+		Sessions.getCurrent().setAttribute("paper", paperID);
+	}
+	
+	public static int GetPaper(){
+		Session zkSession = Executions.getCurrent().getDesktop().getSession();
+		int paperID = (int) zkSession.getAttribute("paper");
+		return paperID;
+	}
 
 	// Returns the username of the user currenty logged in
 	public static String GetUser()

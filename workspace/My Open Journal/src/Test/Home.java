@@ -28,8 +28,7 @@ public class Home {
 				@Override
 				public void onEvent(Event event) throws Exception {
 					DBManager manager = new DBManager();
-					System.out.println("path: " + manager.GetPaperPath(id));
-					Executions.sendRedirect(manager.GetPaperPath(id));
+					Executions.sendRedirect("paper.zul");
 				}
 	        }
 	        );
