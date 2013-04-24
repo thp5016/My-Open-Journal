@@ -3,11 +3,14 @@ package Test;
 import org.zkoss.util.media.Media;
 import org.zkoss.zk.ui.Component;
 import org.zkoss.zk.ui.Executions;
+import org.zkoss.zk.ui.event.EventListener;
 import org.zkoss.zk.ui.event.UploadEvent;
 import org.zkoss.zk.ui.select.SelectorComposer;
 import org.zkoss.zk.ui.select.annotation.Listen;
 import org.zkoss.zk.ui.select.annotation.Wire;
+import org.zkoss.zul.Messagebox;
 import org.zkoss.zul.Textbox;
+import org.zkoss.zul.Messagebox.ClickEvent;
 
 import java.io.File;
 import java.io.IOException;
@@ -43,7 +46,14 @@ public class Upload extends SelectorComposer<Component> {
     	id = manager.GetID(user);
     	path = "papers\\" + user + "\\" + filePath.getText();
     	manager.InsertPaper(id, title.getText(), path, description.getText(), dateFormat.format(date));
-    	Executions.sendRedirect("index.zul");
+		EventListener<ClickEvent> clickListener = new EventListener<Messagebox.ClickEvent>() {
+			public void onEvent(ClickEvent event)
+			{
+				Executions.sendRedirect("index.zul");
+			}
+		};
+		Messagebox.show("You have successfully uploaded a paper!!", "", new Messagebox.Button[]{
+	        Messagebox.Button.OK}, Messagebox.INFORMATION, clickListener);
 	}
 	
 	// Uploads file to the server to directory C:\tomcat\webapps\ROOT\papers

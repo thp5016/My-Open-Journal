@@ -44,7 +44,7 @@ public class Register extends SelectorComposer<Component> {
 			}
 		};
 		Messagebox.show(username.getText() + " has successfully registered!!", "", new Messagebox.Button[]{
-	        Messagebox.Button.OK}, Messagebox.QUESTION, clickListener);
+	        Messagebox.Button.OK}, Messagebox.INFORMATION, clickListener);
     }
 	
 }

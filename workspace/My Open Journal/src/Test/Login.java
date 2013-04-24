@@ -2,10 +2,13 @@ package Test;
 
 import org.zkoss.zk.ui.Component;
 import org.zkoss.zk.ui.Executions;
+import org.zkoss.zk.ui.event.EventListener;
 import org.zkoss.zk.ui.select.SelectorComposer;
 import org.zkoss.zk.ui.select.annotation.*;
+import org.zkoss.zul.Messagebox;
 import org.zkoss.zul.Popup;
 import org.zkoss.zul.Textbox;
+import org.zkoss.zul.Messagebox.ClickEvent;
 
 public class Login extends SelectorComposer<Component>{
 	
@@ -28,7 +31,14 @@ public class Login extends SelectorComposer<Component>{
     		// Check to see if password matches username
     		if(manager.IsValidPassword(username.getText(), pwd.getText())) {
     			SessionManager.setSession(username.getText(), pwd.getText());
-    			Executions.sendRedirect("index.zul");
+    			EventListener<ClickEvent> clickListener = new EventListener<Messagebox.ClickEvent>() {
+    				public void onEvent(ClickEvent event)
+    				{
+    					Executions.sendRedirect("index.zul");
+    				}
+    			};
+    			Messagebox.show(username.getText() + " has successfully logged in!!", "", new Messagebox.Button[]{
+    		        Messagebox.Button.OK}, Messagebox.INFORMATION, clickListener);
     		}
     		else
     			System.out.println("Incorrect Password!!");
