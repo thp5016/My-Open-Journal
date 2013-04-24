@@ -28,7 +28,7 @@ public class AddComment extends GenericForwardComposer {
     user = SessionManager.GetUser();
     id = manager.GetID(user);
     comment = manager.GetTypedReview(user);
-    manager.InsertReview(commentId, id, comment);
+    manager.InsertComment(commentId, id, comment);
   }
 
   @Listen("onClick = #backToReview")
