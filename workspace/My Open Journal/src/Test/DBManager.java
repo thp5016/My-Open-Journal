@@ -344,4 +344,82 @@ public class DBManager {
 			return false;
 		}
 	}
+	
+	// This function inserts a upvote and updates the corresponding paper table
+	public boolean InsertUpvote(int paperID, int userID) {
+		String query;
+		
+		connection = new DBConnection("10.2.65.20", "myopenjournal", "sa", "umaxistheman");
+    		query1 = "INSERT INTO PaperVotes (Paper_ID, Commenter_ID, Up_Down, Report) VALUES (?, ?, 1, 0)";
+    		query2 = "UPDATE Papers SET Upvotes = Upvotes+1 WHERE Paper_ID = ?";
+		try {
+			PreparedStatement stmt = connection.GetConnection().prepareStatement(query1);
+			stmt.setInt(1, paperID);
+			stmt.setInt(2, userID);
+			stmt.executeUpdate();
+	    		stmt = connection.GetConnection().prepareStatement(query2);
+			stmt.setInt(1, paperID);
+			stmt.executeUpdate();
+			stmt.close();
+	    		connection.Disconnect();
+	    		return true;
+		}
+		catch (SQLException e) {
+			System.out.println("Failure to insert user: " + e.getMessage());
+			return false;
+		}
+	}
+	
+	// This function inserts a downvote and updates the corresponding paper table
+	public boolean InsertDownvote(int paperID, int userID) {
+		String query;
+		
+		connection = new DBConnection("10.2.65.20", "myopenjournal", "sa", "umaxistheman");
+    		query1 = "INSERT INTO PaperVotes (Paper_ID, Commenter_ID, Up_Down, Report) VALUES (?, ?, 0, 0)";
+    		query2 = "UPDATE Papers SET Downvotes = Downvotes+1 WHERE Paper_ID = ?";
+		try {
+			PreparedStatement stmt = connection.GetConnection().prepareStatement(query1);
+			stmt.setInt(1, paperID);
+			stmt.setInt(2, userID);
+			stmt.executeUpdate();
+	    		stmt = connection.GetConnection().prepareStatement(query2);
+			stmt.setInt(1, paperID);
+			stmt.executeUpdate();
+			stmt.close();
+	    		connection.Disconnect();
+	    		return true;
+		}
+		catch (SQLException e) {
+			System.out.println("Failure to insert user: " + e.getMessage());
+			return false;
+		}
+	}
+	
+	// checks to see if the specified username has been registered/exists in database
+	public boolean CanVote(int paperID, int userID) {
+		String query;
+		ResultSet rs;
+		boolean isEmpty;
+		
+		connection = new DBConnection("10.2.65.20", "myopenjournal", "sa", "umaxistheman");
+    		query = "SELECT * FROM PaperVotes WHERE Paper_ID = ? AND User_ID = ?";
+		try {
+			PreparedStatement stmt = connection.GetConnection().prepareStatement(query);
+			stmt.setString(1, paperID);
+			stmt.setString(2, userID);
+			rs = stmt.executeQuery();
+			if(rs.next())
+				canVote = false;
+			else
+				canVote = true;
+	    		rs.close();
+	    		stmt.close();
+	    		connection.Disconnect();
+	    		return canVote;
+		} 
+		catch (SQLException e) {
+			System.out.println("Invalid Username!!");
+			return false;
+		}
+	}
 }
