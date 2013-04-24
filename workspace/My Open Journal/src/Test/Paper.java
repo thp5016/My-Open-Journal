@@ -13,19 +13,34 @@ import org.zkoss.zul.impl.InputElement;
 public class Paper extends GenericForwardComposer 
 {
   //need to implement a funciton in session manager
-  int paper_id = manager.GetID(paper);
+  int paperID = SessionManager.GetPaper(paper);
+  String user = SessionManager.GetUser(user);
 
   @Listen("onClick = #downloadLink")
   public void viewPaper()
   {
     // redirect to the pdf id specified by the page url
     // Executions.sendRedirect(/* pdf url */);
+    String path;
+    
+    DBManager manager = new DBManager();
+    path = manager.GetPaperPath(int paperID);
+    
+    Executions.sendRedirect(path);
   }
   @Listen("onClick = #upVotes")
   public void upVote()
   {
     // add a new entry to the paper votes table
     // update the paper's upvotes count
+    int userID;
+    DBManager manager = new DBManager();
+    userID = manager.GetPaperID(paper);
+    
+    if(manager.CanVote(paperID, userID))
+    {
+      manager.InsertUpvote(paperID, userID);
+    }
     
   }
   @Listen("onClick = #downVotes")
@@ -33,6 +48,15 @@ public class Paper extends GenericForwardComposer
   {
     // add a new entry to the papers votes table
     // update the paper's downvotes count
+    int userID;
+    DBManager manager = new DBManager();
+    userID = manager.GetPaperID(paper);
+    
+    if(manager.CanVote(paperID, userID))
+    {
+      manager.InsertDownvote(paperID, userID);
+    }
+    
   }
   @Listen("onClick = #reviewLink")
   public void viewReview()
