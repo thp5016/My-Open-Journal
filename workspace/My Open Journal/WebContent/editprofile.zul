@@ -3,7 +3,7 @@
 <?init class="Test.SessionManager"?>
 	<window  apply="Test.EditProfile" >
 
-		<grid>
+		<grid oddRowSclass = "false">
 			<rows>
 				<row>
 					<label  value="First Name"
@@ -32,9 +32,14 @@
 					<textbox width="300px" mold="rounded"></textbox>
 				</row>
 				<row>
+					<hbox>
 					<label value="Current  Password"
 						style="font-weight:bold; color:black; font-size:20px">
 					</label>
+					<label value="(Please enter current password to save profile changes)"
+						style="color:black; font-size:12px">
+					</label>
+					</hbox>
 				</row>
 				<row>
 					<textbox id ="currentPass" width="300px" mold="rounded" type="password"></textbox>
