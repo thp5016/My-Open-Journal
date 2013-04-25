@@ -17,11 +17,6 @@
 						<label id = "byAuthor" style = "font-weight:bold; font-size:14px"/>
 					</cell>
 				</row>
-				<row>
-					<cell colspan = "13">
-						<button id = "linkToProfile" label = "View User Profile" style = "font-weight:bold; font-size:12px" mold = "trendy"/>
-					</cell>
-				</row>
 				<row><label/></row>
 				<row>
 					<toolbarbutton id ="upVotes" label = "▲ up" style = "color:green; font-weight:bold; font-size:14px" />
