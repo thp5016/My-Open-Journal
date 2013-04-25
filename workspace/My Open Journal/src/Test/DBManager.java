@@ -771,4 +771,159 @@ public class DBManager {
 			return false;
 		}
 	}
+	
+	public int GetCommentUpvotes(int id)
+	{
+		int upvotes;
+		String query;
+		ResultSet rs;
+		connection = new DBConnection("10.2.65.20", "myopenjournal", "sa", "umaxistheman");
+    	query = "select Upvotes from Comments where Comment_ID = ?;";
+    	try {
+			PreparedStatement stmt = connection.GetConnection().prepareStatement(query);
+			stmt.setInt(1, id);
+			rs = stmt.executeQuery();
+			rs.next();
+			upvotes = rs.getInt(1);
+			rs.close();
+			stmt.close();
+	    	connection.Disconnect();
+	    	return upvotes;
+		} 
+		catch (SQLException e) {
+			System.out.println("Failure to Get Top Papers: " + e.getMessage());
+			return -1;
+		}
+	}
+	
+	public int GetCommentDownvotes(int id)
+	{
+		int downvotes;
+		String query;
+		ResultSet rs;
+		connection = new DBConnection("10.2.65.20", "myopenjournal", "sa", "umaxistheman");
+    	query = "select Downvotes from Comments where Comment_ID = ?;";
+    	try {
+			PreparedStatement stmt = connection.GetConnection().prepareStatement(query);
+			stmt.setInt(1, id);
+			rs = stmt.executeQuery();
+			rs.next();
+			downvotes = rs.getInt(1);
+			rs.close();
+			stmt.close();
+	    	connection.Disconnect();
+	    	return downvotes;
+		} 
+		catch (SQLException e) {
+			System.out.println("Failure to Get Comment Downvotes: " + e.getMessage());
+			return -1;
+		}
+	}
+	
+	// checks to see if the specified username has been registered/exists in database
+	public boolean CanVoteComment(int commentID, int userID) {
+		String query;
+		ResultSet rs;
+		boolean canVote;
+		
+		connection = new DBConnection("10.2.65.20", "myopenjournal", "sa", "umaxistheman");
+    		query = "SELECT * FROM CommentVotes WHERE Comment_ID = ? AND User_ID = ?";
+		try {
+			PreparedStatement stmt = connection.GetConnection().prepareStatement(query);
+			stmt.setInt(1, commentID);
+			stmt.setInt(2, userID);
+			rs = stmt.executeQuery();
+			if(rs.next())
+				canVote = false;
+			else
+				canVote = true;
+	    		rs.close();
+	    		stmt.close();
+	    		connection.Disconnect();
+	    		return canVote;
+		} 
+		catch (SQLException e) {
+			System.out.println("Invalid Username!!");
+			return false;
+		}
+	}
+	
+	// This function inserts a upvote and updates the corresponding paper table
+	public boolean InsertCommentUpvote(int commentID, int userID) {
+		String query1;
+		String query2;
+		
+		connection = new DBConnection("10.2.65.20", "myopenjournal", "sa", "umaxistheman");
+    		query1 = "INSERT INTO CommentVotes (Comment_ID, User_ID, Up_Down, Report) VALUES (?, ?, 1, 0)";
+    		query2 = "UPDATE Comments SET Upvotes = Upvotes+1 WHERE Comment_ID = ?";
+		try {
+			PreparedStatement stmt = connection.GetConnection().prepareStatement(query1);
+			stmt.setInt(1, commentID);
+			stmt.setInt(2, userID);
+			stmt.executeUpdate();
+	    		stmt = connection.GetConnection().prepareStatement(query2);
+			stmt.setInt(1, commentID);
+			stmt.executeUpdate();
+			stmt.close();
+	    		connection.Disconnect();
+	    		return true;
+		}
+		catch (SQLException e) {
+			System.out.println("Failure to insert user: " + e.getMessage());
+			return false;
+		}
+	}
+	
+	// This function inserts a downvote and updates the corresponding paper table
+	public boolean InsertCommentDownvote(int commentID, int userID) {
+		String query1;
+		String query2;
+		
+		connection = new DBConnection("10.2.65.20", "myopenjournal", "sa", "umaxistheman");
+    		query1 = "INSERT INTO CommentVotes (Comment_ID, User_ID, Up_Down, Report) VALUES (?, ?, 0, 0)";
+    		query2 = "UPDATE Comments SET Downvotes = Downvotes+1 WHERE Comment_ID = ?";
+		try {
+			PreparedStatement stmt = connection.GetConnection().prepareStatement(query1);
+			stmt.setInt(1, commentID);
+			stmt.setInt(2, userID);
+			stmt.executeUpdate();
+	    		stmt = connection.GetConnection().prepareStatement(query2);
+			stmt.setInt(1, commentID);
+			stmt.executeUpdate();
+			stmt.close();
+	    		connection.Disconnect();
+	    		return true;
+		}
+		catch (SQLException e) {
+			System.out.println("Failure to insert user: " + e.getMessage());
+			return false;
+		}
+	}
+	
+	public List<CommentData> GetComments(int reviewID){
+		String query;
+		ResultSet rs;
+		connection = new DBConnection("10.2.65.20", "myopenjournal", "sa", "umaxistheman");
+    	query = "select * from Comments where Review_ID = ? order by Upvotes desc;";
+		try {
+			PreparedStatement stmt = connection.GetConnection().prepareStatement(query);
+			stmt.setInt(1, reviewID);
+			rs = stmt.executeQuery();
+	    	List<CommentData> rowValues = new ArrayList<CommentData>();
+
+	    	while (rs.next()) {
+	    		CommentData data = new CommentData(rs.getString(4), GetUsername(rs.getInt(1)), rs.getInt(7), rs.getInt(8), reviewID, rs.getInt(1));
+	    	    rowValues.add(data);
+	    	}
+
+	    	rs.close();
+			stmt.close();
+	    	connection.Disconnect();
+	    	return rowValues;
+		} 
+		catch (SQLException e) {
+			System.out.println("Failure to Get Comments: " + e.getMessage());
+		}
+		return null;
+	}
 }

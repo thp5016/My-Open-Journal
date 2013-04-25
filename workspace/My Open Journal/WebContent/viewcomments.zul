@@ -1,7 +1,9 @@
 <?page title="MyOpenJournal - Comments" contentType="text/html;charset=UTF-8"?>
 <zk>
+<?init class="Test.SessionManager"?>
+
 	<window width = "722px">
-		<grid oddRowSclass="none">
+		<grid oddRowSclass="none" apply="Test.ViewComments">
 			<rows>
 				<row>
 					<label id = "commentHeading" value = "Comments" style="color:black; font-weight:bold; font-size:20px"/>
@@ -10,7 +12,7 @@
 					<label value = "in response to Author's review of Paper" style = "color:black;font-weight:bold;font-size:14px"/>
 				</row>
 				<row>
-					<grid id="reviewTable">
+					<grid id="commentTable">
   						<columns menupopup="auto">
     						<column width = "60%" label="Comment" style = "color:black"/>
     						<column width = "20%" label="Author" style = "color:black"/>
