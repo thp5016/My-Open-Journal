@@ -24,14 +24,14 @@
 				</row>
 				<row><label/></row>
 				<row>
-					<toolbarbutton id ="upVotes" label = "▲ up" style = "color:green; font-weight:bold; font-size:14px" href = "google.com"/>
-					<toolbarbutton id = "dnVotes" label = "▼ dn" style = "color:red; font-weight:bold; font-size:14px" href = "google.com"/>
+					<toolbarbutton id ="upVotes" label = "▲ up" style = "color:green; font-weight:bold; font-size:14px" />
+					<toolbarbutton id = "dnVotes" label = "▼ dn" style = "color:red; font-weight:bold; font-size:14px"/>
 					<label/><label/><label/><label/><label/><label/><label/><label/>
 				</row>
 				<row><label/></row>
 				<row>
 					<cell colspan = "13">
-					<textbox id = "text" width = "600px" mold = "rounded" rows = "13"/>
+					<textbox id = "text" width = "600px" mold = "rounded" rows = "13" readonly="true"/>
 					</cell>
 				</row>
 				<row>

@@ -1,25 +1,24 @@
-<?page title="MyOpenJournal - Reviews" contentType="text/html;charset=UTF-8"?>
+<?page title="MyOpenJournal - Reviews" contentType="text/html;charset=UTF-12"?>
 <zk>
 <?init class="Test.SessionManager"?>
 
 	<window width = "722px">
-		<grid oddRowSclass="none" apply="Test.ViewReviews">
+		<grid id ="allReviewCols" oddRowSclass="none" apply="Test.ViewReviews">
 			<rows>
 				<row>
 					<hbox width ="100%" height = "20px">
-						<label id = "reviewHeading" value = "Reviews for Paper Title" style="color:black; font-weight:bold; font-size:20px"/>
+						<label id = "reviewHeading" value = "Reviews for Paper Title" style="color:black; font-weight:bold; font-size:20px" />
 					</hbox>
 				</row>
 				<row>
 					<grid id="reviewTable">
   						<columns menupopup="auto">
-    						<column width = "70%" label="Author" style = "color:black"/>
+    						<column width = "70%" label="Author" style = "color:black" />
     						<column label="▲Up" align = "center" style = "color:green"/>
     						<column label="▼Down" align ="center" style = "color:red"/>
   						</columns>
 					</grid>
 				</row>
-				<row><label/></row>
 				<row>
 					<button id = "addReviewLink" mold = "trendy" label = "Add Your Own Review" style = "font-weight:bold; font-size:14px"/>
 				</row>
