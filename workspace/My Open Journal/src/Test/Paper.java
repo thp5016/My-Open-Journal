@@ -63,6 +63,7 @@ public class Paper extends SelectorComposer<Grid> {
 		if(userID != -1) {
 			if(manager.CanVotePaper(paperID, userID)) {
 				manager.InsertPaperUpvote(paperID, userID);
+				manager.UpdatePaperWeight(paperID);
 				Executions.sendRedirect("paper.zul");
 			}
 			else
@@ -90,6 +91,7 @@ public class Paper extends SelectorComposer<Grid> {
 		if(userID != -1) {
 			if(manager.CanVotePaper(paperID, userID)) {
 				manager.InsertPaperDownvote(paperID, userID);
+				manager.UpdatePaperWeight(paperID);
 				Executions.sendRedirect("paper.zul");
 			}
 			else

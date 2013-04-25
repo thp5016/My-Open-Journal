@@ -30,8 +30,7 @@
 			<grid id="highCol">
   				<columns menupopup="auto">
     				<column width = "70%" label="Title" style = "color:black"/>
-    				<column label="▲Up" align = "center" style = "color:green"/>
-    				<column label="▼Down" align ="center" style = "color:red"/>
+					<column label= "Rating" align = "center"/>
   				</columns>
 			</grid>
 		</column>

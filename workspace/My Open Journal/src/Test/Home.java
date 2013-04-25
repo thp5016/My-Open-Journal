@@ -55,13 +55,42 @@ public class Home extends SelectorComposer<Grid>{
 	    }
 	}
 	
+	// Displays the top 10 papers
+	public void DisplayHighest(Grid myGrid, List<HighestData> data)
+	{
+	    Rows rows = new Rows();
+	    rows.setParent(myGrid);
+	    for(HighestData d : data)
+	    {
+	    	final int id = d.GetID();
+	        Label title= new Label(d.GetTitle());
+	        title.addEventListener("onClick", new EventListener<Event>()
+	        {
+				@Override
+				public void onEvent(Event event) throws Exception {
+					SessionManager.SetPaper(id);
+					Executions.sendRedirect("paper.zul");
+				}
+	        }
+	        );
+	        Label weight = new Label("" + d.GetWeight());
+
+	        Row row = new Row();    
+
+	        title.setParent(row);
+	        weight.setParent(row);
+
+	        row.setParent(rows);
+	    }
+	}
+	
 	public void doAfterCompose(Grid comp) {
 		DBManager manager = new DBManager();
 		try {
 			super.doAfterCompose(comp);
 			DisplayResult(popCol, manager.GetTopPapers());
 			DisplayResult(newCol, manager.GetNewPapers());
-			DisplayResult(highCol, manager.GetTopPapers());
+			DisplayHighest(highCol, manager.GetHighestPapers());
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

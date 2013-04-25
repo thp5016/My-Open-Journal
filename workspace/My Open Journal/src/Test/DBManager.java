@@ -9,6 +9,53 @@ public class DBManager {
 
 	private DBConnection connection;
 	
+	public String GetPaperDate(int id)
+	{
+		String date;
+		String query;
+		ResultSet rs;
+		connection = new DBConnection("10.2.65.20", "myopenjournal", "sa", "umaxistheman");
+    	query = "select Upload_Date from Papers where Paper_ID = ?;";
+    	try {
+			PreparedStatement stmt = connection.GetConnection().prepareStatement(query);
+			stmt.setInt(1, id);
+			rs = stmt.executeQuery();
+			rs.next();
+			date = rs.getString(1);
+			rs.close();
+			stmt.close();
+	    	connection.Disconnect();
+	    	return date;
+		} 
+		catch (SQLException e) {
+			System.out.println("Failure to Get date: " + e.getMessage());
+			return null;
+		}
+	}
+	
+	public boolean UpdatePaperWeight(int paperID)
+	{
+		String query;
+		double weight;
+		
+		weight = Rank.GetRank(paperID);
+		connection = new DBConnection("10.2.65.20", "myopenjournal", "sa", "umaxistheman");
+    	query = "update Papers set Weight = ? where Paper_ID = ?;";
+    	try {
+			PreparedStatement stmt = connection.GetConnection().prepareStatement(query);
+			stmt.setDouble(1, weight);
+			stmt.setInt(2, paperID);
+			stmt.executeUpdate();
+			stmt.close();
+	    	connection.Disconnect();
+	    	return true;
+		} 
+		catch (SQLException e) {
+			System.out.println("Failure to update paper weight: " + e.getMessage());
+			return false;
+		}
+	}
+	
 	// Creates a new entry in the User database with the specified values
 	public boolean InsertUser(String user, String firstName, String lastName, String pass, String email, String admin, String date) {
 		String query;
@@ -379,6 +426,33 @@ public class DBManager {
 	    	connection.Disconnect();
 			return null;
 		}
+	}
+	
+	public List<HighestData> GetHighestPapers()
+	{
+		String query;
+		ResultSet rs;
+		connection = new DBConnection("10.2.65.20", "myopenjournal", "sa", "umaxistheman");
+    	query = "select top 10 * from Papers order by Weight desc;";
+		try {
+			PreparedStatement stmt = connection.GetConnection().prepareStatement(query);
+			rs = stmt.executeQuery();
+	    	List<HighestData> rowValues = new ArrayList<HighestData>();
+
+	    	while (rs.next()) {
+	    		HighestData data = new HighestData(rs.getString(4), rs.getString(9), rs.getString(10), rs.getInt(1), rs.getDouble(8));
+	    	    rowValues.add(data);
+	    	}
+
+	    	rs.close();
+			stmt.close();
+	    	connection.Disconnect();
+	    	return rowValues;
+		} 
+		catch (SQLException e) {
+			System.out.println("Failure to Get Top Papers: " + e.getMessage());
+		}
+		return null;
 	}
 	
 	public List<Data> GetNewPapers()
