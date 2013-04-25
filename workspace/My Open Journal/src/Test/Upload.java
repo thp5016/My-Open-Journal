@@ -42,7 +42,6 @@ public class Upload extends SelectorComposer<Component> {
 		Date date = new Date();
     	DBManager manager = new DBManager();
     	user = SessionManager.GetUser();
-    	System.out.println("filename: " + filePath.getText());
     	id = manager.GetID(user);
     	path = "papers\\" + user + "\\" + filePath.getText();
     	manager.InsertPaper(id, title.getText(), path, description.getText(), dateFormat.format(date));
@@ -62,8 +61,7 @@ public class Upload extends SelectorComposer<Component> {
 		
 		// Get the path to upload the file to
 		String path = Executions.getCurrent().getDesktop().getWebApp().getRealPath("/");
-		path = path + "papers/" + SessionManager.GetUser() + "/";
-		System.out.println("Path: " + path);
+		path = path + "papers\\" + SessionManager.GetUser() + "\\";
 		Media media = event.getMedia();
 		if(media == null)
 			System.out.println("NULL!!");

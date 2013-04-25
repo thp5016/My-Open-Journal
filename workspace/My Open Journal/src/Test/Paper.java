@@ -27,13 +27,13 @@ public class Paper extends SelectorComposer<Grid> {
 
 	@Wire
 	Label byAuthor;
-	
+
 	@Wire
 	Label description;
-	
+
 	@Wire
 	Toolbarbutton upVotes;
-	
+
 	@Wire
 	Toolbarbutton dnVotes;
 
@@ -52,7 +52,7 @@ public class Paper extends SelectorComposer<Grid> {
 
 		Executions.sendRedirect(path);
 	}
-	
+
 	@Listen("onClick = #upVotes")
 	public void upVote() {
 		// add a new entry to the paper votes table
@@ -61,8 +61,8 @@ public class Paper extends SelectorComposer<Grid> {
 		DBManager manager = new DBManager();
 		userID = manager.GetID(user);
 		if(userID != -1) {
-			if(manager.CanVote(paperID, userID)) {
-				manager.InsertUpvote(paperID, userID);
+			if(manager.CanVotePaper(paperID, userID)) {
+				manager.InsertPaperUpvote(paperID, userID);
 				Executions.sendRedirect("paper.zul");
 			}
 			else
@@ -76,10 +76,10 @@ public class Paper extends SelectorComposer<Grid> {
 				}
 			};
 			Messagebox.show("Please login to upvote a paper!!", "", new Messagebox.Button[] {
-    		        Messagebox.Button.OK}, Messagebox.INFORMATION, clickListener);
+					Messagebox.Button.OK}, Messagebox.INFORMATION, clickListener);
 		}
 	}
-		
+
 	@Listen("onClick = #dnVotes")
 	public void downVote() {
 		// add a new entry to the papers votes table
@@ -88,8 +88,8 @@ public class Paper extends SelectorComposer<Grid> {
 		DBManager manager = new DBManager();
 		userID = manager.GetID(user);
 		if(userID != -1) {
-			if(manager.CanVote(paperID, userID)) {
-				manager.InsertDownvote(paperID, userID);
+			if(manager.CanVotePaper(paperID, userID)) {
+				manager.InsertPaperDownvote(paperID, userID);
 				Executions.sendRedirect("paper.zul");
 			}
 			else
@@ -102,7 +102,7 @@ public class Paper extends SelectorComposer<Grid> {
 				}
 			};
 			Messagebox.show("Please login to downvote a paper!!", "", new Messagebox.Button[] {
-    		        Messagebox.Button.OK}, Messagebox.INFORMATION, clickListener);
+					Messagebox.Button.OK}, Messagebox.INFORMATION, clickListener);
 		}
 	}
 
@@ -110,17 +110,27 @@ public class Paper extends SelectorComposer<Grid> {
 	public void viewReview() {
 		Executions.sendRedirect("viewreviews.zul");
 	}
-	
+
 	@Listen("onClick = #addReviewLink")
 	public void addReview() {
-		Executions.sendRedirect("review.zul");
+		if(SessionManager.GetUser() != null)
+			Executions.sendRedirect("addreview.zul");
+		else{
+			EventListener<ClickEvent> clickListener = new EventListener<Messagebox.ClickEvent>() {
+				public void onEvent(ClickEvent event) {
+					Executions.sendRedirect("login.zul");
+				}
+			};
+			Messagebox.show("Please login to submit a review!!", "", new Messagebox.Button[] {
+					Messagebox.Button.OK}, Messagebox.INFORMATION, clickListener);
+		}
 	}
-	
+
 	public void SetTitle() {
 		DBManager manager = new DBManager();
 		paperTitle.setValue("Title: " + manager.GetPaperTitle(paperID));
 	}
-	
+
 	public void SetAuthor() {
 		int author;
 		String username;
@@ -129,34 +139,34 @@ public class Paper extends SelectorComposer<Grid> {
 		username = manager.GetUsername(author);
 		byAuthor.setValue("Author: " + manager.GetUsername(author));
 	}
-	
+
 	public void SetDescription() {
 		DBManager manager = new DBManager();
 		description.setValue("Description: " + manager.GetPaperDescription(paperID));
 	}
-	
+
 	public void SetUpvotes() {
 		DBManager manager = new DBManager();
-		upVotes.setLabel("" + manager.GetUpvotes(paperID) + "▲ up");
+		upVotes.setLabel("" + manager.GetPaperUpvotes(paperID) + "▲ up");
 	}
-	
+
 	public void SetDownvotes() {
 		DBManager manager = new DBManager();
-		dnVotes.setLabel(manager.GetDownvotes(paperID) + "▼ dn");
+		dnVotes.setLabel(manager.GetPaperDownvotes(paperID) + "▼ dn");
 	}
-	
-	   public void doAfterCompose(Grid comp) {
-		      try {
-				super.doAfterCompose(comp);
-				SetTitle();
-				SetAuthor();
-				SetDescription();
-				SetUpvotes();
-				SetDownvotes();
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} //wire variables and event listners
-		      //do whatever you want (you could access wired variables here)
-		   }
+
+	public void doAfterCompose(Grid comp) {
+		try {
+			super.doAfterCompose(comp);
+			SetTitle();
+			SetAuthor();
+			SetDescription();
+			SetUpvotes();
+			SetDownvotes();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} //wire variables and event listners
+		//do whatever you want (you could access wired variables here)
+	}
 }

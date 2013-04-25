@@ -3,7 +3,7 @@
 <zk>
 <?init class="Test.SessionManager"?>
 
-<grid id = "allHomeCols">
+<grid id = "allHomeCols" apply="Test.Home">
 	<columns>
 		<column>
 			<label value = "MOST POPULAR" style = "color: black; font-weight:bold; font-size:14px"/>
@@ -37,16 +37,5 @@
 		</column>
 	</columns>
 </grid>
-
-<zscript> 
-import Test.DBManager;
-import Test.Home; 
-DBManager manager = new DBManager(); 
-manager.GetTopPapers();
-Home home = new Home();
-home.DisplayResult(popCol, manager.GetTopPapers());
-home.DisplayResult(newCol, manager.GetNewPapers());
-home.DisplayResult(highCol, manager.GetTopPapers());
-</zscript> 
 
 </zk>

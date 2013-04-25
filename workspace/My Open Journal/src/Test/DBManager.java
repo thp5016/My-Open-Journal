@@ -178,6 +178,56 @@ public class DBManager {
 		}
 	}
 	
+	public String GetText(int reviewID)
+	{
+		String text;
+		String query;
+		ResultSet rs;
+		connection = new DBConnection("10.2.65.20", "myopenjournal", "sa", "umaxistheman");
+    	query = "select Text from Reviews where Review_ID = ?;";
+    	try {
+			PreparedStatement stmt = connection.GetConnection().prepareStatement(query);
+			stmt.setInt(1, reviewID);
+			rs = stmt.executeQuery();
+			rs.next();
+			text = rs.getString(1);
+			rs.close();
+			stmt.close();
+	    	connection.Disconnect();
+	    	return text;
+		} 
+		catch (SQLException e) {
+			System.out.println("Failure to Get Top Papers: " + e.getMessage());
+			return null;
+		}
+	}
+	
+	public String GetReviewAuthor(int reviewID)
+	{
+		String author;
+		int authorID;
+		String query;
+		ResultSet rs;
+		connection = new DBConnection("10.2.65.20", "myopenjournal", "sa", "umaxistheman");
+    	query = "select Reviewer_ID from Reviews where Review_ID = ?;";
+    	try {
+			PreparedStatement stmt = connection.GetConnection().prepareStatement(query);
+			stmt.setInt(1, reviewID);
+			rs = stmt.executeQuery();
+			rs.next();
+			authorID = rs.getInt(1);
+			rs.close();
+			stmt.close();
+	    	connection.Disconnect();
+	    	author = GetUsername(authorID);
+	    	return author;
+		} 
+		catch (SQLException e) {
+			System.out.println("Failure to Get Top Papers: " + e.getMessage());
+			return null;
+		}
+	}
+	
 	public String GetPaperTitle(int id)
 	{
 		String title;
@@ -227,8 +277,35 @@ public class DBManager {
 		}
 	}
 	
-	public List<Data> GetTopPapers()
-	{
+	public List<ReviewData> GetReviews(int paperID){
+		String query;
+		ResultSet rs;
+		connection = new DBConnection("10.2.65.20", "myopenjournal", "sa", "umaxistheman");
+    	query = "select * from Reviews where Paper_ID = ? order by Upvotes desc;";
+		try {
+			PreparedStatement stmt = connection.GetConnection().prepareStatement(query);
+			stmt.setInt(1, paperID);
+			rs = stmt.executeQuery();
+	    	List<ReviewData> rowValues = new ArrayList<ReviewData>();
+
+	    	while (rs.next()) {
+	    		int authorID = rs.getInt(3);
+	    		ReviewData data = new ReviewData(GetUsername(authorID), rs.getString(7), rs.getString(8), rs.getInt(1));
+	    	    rowValues.add(data);
+	    	}
+
+	    	rs.close();
+			stmt.close();
+	    	connection.Disconnect();
+	    	return rowValues;
+		} 
+		catch (SQLException e) {
+			System.out.println("Failure to Get Reviews: " + e.getMessage());
+		}
+		return null;
+	}
+	
+	public List<Data> GetTopPapers() {
 		String query;
 		ResultSet rs;
 		connection = new DBConnection("10.2.65.20", "myopenjournal", "sa", "umaxistheman");
@@ -346,7 +423,6 @@ public class DBManager {
 			rs.next();
 			if(saltedAndHashedPass.equals(rs.getString(1)))
 	    	{
-				System.out.println(user + " has successfully logged in!!");
 		    	rs.close();
 				stmt.close();
 		    	connection.Disconnect();
@@ -354,7 +430,6 @@ public class DBManager {
 	    	}
 	    	else
 	    	{
-				System.out.println("Invalid Password!!");
 		    	rs.close();
 				stmt.close();
 		    	connection.Disconnect();
@@ -419,16 +494,17 @@ public class DBManager {
 	
 	// This function inserts a new review into the database given a paper_ID the review is
 	// posted on, user_ID that is submitting the comment, and a String review
-	public boolean InsertReview(int paperID, int userID, String review) {
+	public boolean InsertReview(int paperID, int userID, String review, String date) {
 		String query;
 		
 		connection = new DBConnection("10.2.65.20", "myopenjournal", "sa", "umaxistheman");
-    	query = "INSERT INTO Comments (Paper_ID, Commenter_ID, Text) VALUES (?, ?, ?)";
+    	query = "INSERT INTO Reviews (Paper_ID, Reviewer_ID, Text, Upload_Date, Upvotes, Downvotes) VALUES (?, ?, ?, ?, 0, 0)";
 		try {
 			PreparedStatement stmt = connection.GetConnection().prepareStatement(query);
 			stmt.setInt(1, paperID);
 			stmt.setInt(2, userID);
 			stmt.setString(3, review);
+			stmt.setString(4, date);
 			stmt.executeUpdate();
 			stmt.close();
 	    	connection.Disconnect();
@@ -440,7 +516,7 @@ public class DBManager {
 		}
 	}
 	
-	public int GetUpvotes(int id)
+	public int GetPaperUpvotes(int id)
 	{
 		int upvotes;
 		String query;
@@ -464,7 +540,7 @@ public class DBManager {
 		}
 	}
 	
-	public int GetDownvotes(int id)
+	public int GetPaperDownvotes(int id)
 	{
 		int downvotes;
 		String query;
@@ -488,8 +564,56 @@ public class DBManager {
 		}
 	}
 	
+	public int GetReviewUpvotes(int id)
+	{
+		int upvotes;
+		String query;
+		ResultSet rs;
+		connection = new DBConnection("10.2.65.20", "myopenjournal", "sa", "umaxistheman");
+    	query = "select Upvotes from Reviews where Review_ID = ?;";
+    	try {
+			PreparedStatement stmt = connection.GetConnection().prepareStatement(query);
+			stmt.setInt(1, id);
+			rs = stmt.executeQuery();
+			rs.next();
+			upvotes = rs.getInt(1);
+			rs.close();
+			stmt.close();
+	    	connection.Disconnect();
+	    	return upvotes;
+		} 
+		catch (SQLException e) {
+			System.out.println("Failure to Get Top Papers: " + e.getMessage());
+			return -1;
+		}
+	}
+	
+	public int GetReviewDownvotes(int id)
+	{
+		int downvotes;
+		String query;
+		ResultSet rs;
+		connection = new DBConnection("10.2.65.20", "myopenjournal", "sa", "umaxistheman");
+    	query = "select Downvotes from Reviews where Review_ID = ?;";
+    	try {
+			PreparedStatement stmt = connection.GetConnection().prepareStatement(query);
+			stmt.setInt(1, id);
+			rs = stmt.executeQuery();
+			rs.next();
+			downvotes = rs.getInt(1);
+			rs.close();
+			stmt.close();
+	    	connection.Disconnect();
+	    	return downvotes;
+		} 
+		catch (SQLException e) {
+			System.out.println("Failure to Get Top Papers: " + e.getMessage());
+			return -1;
+		}
+	}
+	
 	// This function inserts a upvote and updates the corresponding paper table
-	public boolean InsertUpvote(int paperID, int userID) {
+	public boolean InsertPaperUpvote(int paperID, int userID) {
 		String query1;
 		String query2;
 		
@@ -515,7 +639,7 @@ public class DBManager {
 	}
 	
 	// This function inserts a downvote and updates the corresponding paper table
-	public boolean InsertDownvote(int paperID, int userID) {
+	public boolean InsertPaperDownvote(int paperID, int userID) {
 		String query1;
 		String query2;
 		
@@ -541,7 +665,7 @@ public class DBManager {
 	}
 	
 	// checks to see if the specified username has been registered/exists in database
-	public boolean CanVote(int paperID, int userID) {
+	public boolean CanVotePaper(int paperID, int userID) {
 		String query;
 		ResultSet rs;
 		boolean canVote;

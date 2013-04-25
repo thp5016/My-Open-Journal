@@ -1,18 +1,20 @@
 <?page title="MyOpenJournal - View Review" contentType="text/html;charset=UTF-8"?>
 <zk>
+<?init class="Test.SessionManager"?>
+
 	<window width = "722px">
-		<grid oddRowSclass="none">
+		<grid oddRowSclass="none" apply="Test.Review">
 			<rows>
 				<row>
 					<cell colspan = "13">
 						<hbox width ="100%" height = "20px">
-							<label id = "reviewTitle" value = "Re: Paper Title" style="font-weight:bold; font-size:20px"/>
+							<label id = "reviewTitle" style="font-weight:bold; font-size:20px"/>
 						</hbox>
 					</cell>
 				</row>
 				<row>
 					<cell colspan = "13">
-						<label id = "byAuthor" value = "by Review Author" style = "font-weight:bold; font-size:14px"/>
+						<label id = "byAuthor" style = "font-weight:bold; font-size:14px"/>
 					</cell>
 				</row>
 				<row>
@@ -22,9 +24,6 @@
 				</row>
 				<row><label/></row>
 				<row>
-					<cell colspan = "3">
-					<label id = "viewCount" value = "Views: # of Views" style = "font-weight:bold; font-size:14px"/>
-					</cell>
 					<toolbarbutton id ="upVotes" label = "▲ up" style = "color:green; font-weight:bold; font-size:14px" href = "google.com"/>
 					<toolbarbutton id = "dnVotes" label = "▼ dn" style = "color:red; font-weight:bold; font-size:14px" href = "google.com"/>
 					<label/><label/><label/><label/><label/><label/><label/><label/>
@@ -32,7 +31,7 @@
 				<row><label/></row>
 				<row>
 					<cell colspan = "13">
-						<label id = "description" value = "Review Text" style = "font-size:14px"/>
+					<textbox id = "text" width = "600px" mold = "rounded" rows = "13"/>
 					</cell>
 				</row>
 				<row>

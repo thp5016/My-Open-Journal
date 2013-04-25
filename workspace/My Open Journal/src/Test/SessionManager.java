@@ -46,6 +46,16 @@ public class SessionManager extends SelectorComposer<Component> implements Initi
 		int paperID = (int) zkSession.getAttribute("paper");
 		return paperID;
 	}
+	
+	public static void SetReviewID(int reviewID) {
+		Sessions.getCurrent().setAttribute("review", reviewID);
+	}
+	
+	public static int GetReviewID() {
+		Session zkSession = Executions.getCurrent().getDesktop().getSession();
+		int id = (int) zkSession.getAttribute("review");
+		return id;
+	}
 
 	// Returns the username of the user currenty logged in
 	public static String GetUser()

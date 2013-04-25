@@ -1,13 +1,13 @@
 <?page title="MyOpenJournal - Submit Review" contentType="text/html;charset=UTF-8"?>
 <zk>
 	<window width="722px">	
-		<grid oddRowSclass="none">
+		<grid oddRowSclass="none" apply="Test.AddReview">
 			<rows>
 				<row>
 					<label value = "Submit Review" style="color:black; font-weight:bold; font-size:20px"/>
 				</row>
 				<row>
-					<label id ="responsePaper" value="In Response To: Paper Title Here" style="color:black; font-weight:bold; font-size:16px"/>
+					<label id ="responsePaper" style="color:black; font-weight:bold; font-size:16px"/>
 				</row>
 				<row>
 					<hbox>
