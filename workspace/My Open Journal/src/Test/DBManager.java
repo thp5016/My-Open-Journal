@@ -697,7 +697,7 @@ public class DBManager {
 		
 		connection = new DBConnection("10.2.65.20", "myopenjournal", "sa", "umaxistheman");
     		query1 = "INSERT INTO ReviewVotes (Review_ID, User_ID, Up_Down, Report) VALUES (?, ?, 0, 0)";
-    		query2 = "UPDATE Papers SET Downvotes = Downvotes+1 WHERE Paper_ID = ?";
+    		query2 = "UPDATE Reviews SET Downvotes = Downvotes+1 WHERE Review_ID = ?";
 		try {
 			PreparedStatement stmt = connection.GetConnection().prepareStatement(query1);
 			stmt.setInt(1, reviewID);

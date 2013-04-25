@@ -44,6 +44,12 @@ public class ViewComments extends SelectorComposer<Grid> {
 	    }
 	}
 
+	@Listen("onClick = #backToReview")
+	public void backToReview()
+	{
+		Executions.sendRedirect("review.zul");
+	}
+	
 	@Listen("onClick = #backToPaper")
 	public void goBack() {
 		Executions.sendRedirect("paper.zul");
