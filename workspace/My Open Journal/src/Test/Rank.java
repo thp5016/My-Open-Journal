@@ -21,7 +21,7 @@ public class Rank {
 			date2 = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH).parse(manager.GetPaperDate(paperID));
 			upvotes = manager.GetPaperUpvotes(paperID);
 			downvotes = manager.GetPaperDownvotes(paperID);
-			days = GetNumberOfDays(date1, date2);
+			days = GetNumberOfDays(date2, date1);
 			weight = ((upvotes + 1)/(upvotes + downvotes + 2) + 9 / (days + 1)) / 10;
 			return weight;
 
