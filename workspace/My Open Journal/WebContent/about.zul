@@ -7,25 +7,10 @@
 				<label value = "About Us" style = "font-size:20px; font-weight:bold; color:black"/>
 			</row>
 			<row>
-				<label value = "MyOpenJournal is a scientific social networking site that aims to enable rapid scientific communication, accounting, collaboration, and discovery by providing a system that combines:" style = "font-size:14px; font-weight:bold; color:black"/>
+				<label value = "MyOpenJournal is a scientific social networking site that aims to enable rapid scientific communication, accounting, collaboration, and discovery."  style = "font-size:14px; font-weight:bold; color:black"/>
 			</row>
 			<row>
-				<label value = "▪ OpenAccess Publication" style = "font-size:14px; font-weight:bold; color:black"/>
-			</row>
-			<row>
-				<label value = "▪ OpenReview Capability" style = "font-size:14px; font-weight:bold; color:black"/>
-			</row>
-			<row>
-				<label value = "▪ Tracking System" style = "font-size:14px; font-weight:bold; color:black"/>
-			</row>
-			<row>
-				<label value = "▪ Ranking System" style = "font-size:14px; font-weight:bold; color:black"/>
-			</row>
-			<row>
-				<label value = "▪ Virtual Journal System" style = "font-size:14px; font-weight:bold; color:black"/>
-			</row>
-			<row>
-				<label value = "and more..." style = "font-size:14px; font-weight:bold; color:black"/>
+				<label value = "MyOpenJournal was designed and created by team FOXHOUND, which consists of Jeremy Crafts, Chris Crawford, Eric Dundore, Mike Green, John Larimer, Tyler Purdom and Dan Sassi.  The ZK framework was used to design the GUI of the site, with Java logic and a SQL database running behind the scenes on an Apache Tomcat server." style = "font-size:14px; color:black"/>
 			</row>
 		</rows>
 	</grid>
