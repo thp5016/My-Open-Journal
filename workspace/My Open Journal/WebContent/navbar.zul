@@ -10,7 +10,5 @@
 		<a href="register.zul" sclass="navbar">Register</a>
 		<label sclass="navbar" value="|" />
 		<a href="contact.zul" sclass="navbar">Contact</a>
-		<label sclass="navbar" value="|" />
-		<a href="" sclass="navbar">Search</a>
 	</hlayout>
 </zk>
