@@ -1,32 +1,32 @@
 <?page title="My Open Journal - Contact Us" contentType="text/html;charset=UTF-12"?>
 <zk>
 <?init class="Test.SessionManager"?>
-		<grid>
+		<grid oddRowSclass="false">
 			<rows>
 				<row>
 					<label value="Contact Us"
-						style="font-weight:bold; font-size:20px;">
+						style="color:black; font-weight:bold; font-size:20px;">
 					</label>
 				</row>
 				<row>
-					<label
+					<label style = "color:black; font-size:14px"
 						value="Please feel free to contact us with any service questions, concerns, or feedback.">
 					</label>
 				</row>
 				<row>
 					<hbox>
 						<label value="Email: "
-							style="font-weight:bold; fontsize:10px;">
+							style="font-weight:bold; font-size:14px; color:black">
 						</label>
-						<label value="admin@myopenjournal.org"></label>
+						<label style="color:black; font-size:14px" value="admin@myopenjournal.org"></label>
 					</hbox>
 				</row>
 				<row>
 					<hbox>
 						<label value="Telephone: "
-							style="font-weight:bold; fontsize:10px;">
+							style="font-weight:bold; font-size:14px; color:black">
 						</label>
-						<label value="814-867-5309"></label>
+						<label style ="color:black;  font-size:14px" value="814-867-5309"></label>
 					</hbox>
 
 				</row>

@@ -1,0 +1,33 @@
+<?page title="MyOpenJournal - About Us" contentType="text/html;charset=UTF-8"?>
+<zk>
+<window>
+	<grid oddRowSclass = "false">
+		<rows>
+			<row>
+				<label value = "About Us" style = "font-size:20px; font-weight:bold; color:black"/>
+			</row>
+			<row>
+				<label value = "MyOpenJournal is a scientific social networking site that aims to enable rapid scientific communication, accounting, collaboration, and discovery by providing a system that combines:" style = "font-size:14px; font-weight:bold; color:black"/>
+			</row>
+			<row>
+				<label value = "▪ OpenAccess Publication" style = "font-size:14px; font-weight:bold; color:black"/>
+			</row>
+			<row>
+				<label value = "▪ OpenReview Capability" style = "font-size:14px; font-weight:bold; color:black"/>
+			</row>
+			<row>
+				<label value = "▪ Tracking System" style = "font-size:14px; font-weight:bold; color:black"/>
+			</row>
+			<row>
+				<label value = "▪ Ranking System" style = "font-size:14px; font-weight:bold; color:black"/>
+			</row>
+			<row>
+				<label value = "▪ Virtual Journal System" style = "font-size:14px; font-weight:bold; color:black"/>
+			</row>
+			<row>
+				<label value = "and more..." style = "font-size:14px; font-weight:bold; color:black"/>
+			</row>
+		</rows>
+	</grid>
+</window>
+</zk>
